@@ -24,17 +24,29 @@
             "activitybar": [
                 {
                     "id": "tree",
-                    "title": "结构树",
+                    "title": "chaos - 可视化工具",
                     "icon": "assets/imgs/atom.svg"
                 }
             ]
         },
         "views": {
             "tree": [
+				{
+					"id": "tree.views.todos",
+					"name": "TODO列表"
+				},
+				{
+                    "id": "tree.views.pages",
+                    "name": "页面列表"
+				},
+				{
+                    "id": "tree.views.components",
+                    "name": "组件列表"
+                },
                 {
-                    "id": "test_ID",
-                    "name": "结构树"
-                }
+                    "id": "tree.views.npmScripts",
+                    "name": "NPM脚本"
+				}
             ]
         }
 	},
