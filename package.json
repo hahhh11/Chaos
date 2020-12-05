@@ -19,7 +19,24 @@
 				"command": "Chaos.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "tree",
+                    "title": "结构树",
+                    "icon": "assets/imgs/atom.svg"
+                }
+            ]
+        },
+        "views": {
+            "tree": [
+                {
+                    "id": "test_ID",
+                    "name": "结构树"
+                }
+            ]
+        }
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
