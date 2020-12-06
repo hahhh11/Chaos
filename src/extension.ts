@@ -1,27 +1,45 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
+import { TreeViewProvider } from './TreeViewProvider';
+import { createWebView } from './WebView';
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "Chaos" is now active!');
+	context.subscriptions.push(vscode.commands.registerCommand('Chaos.helloWorld', () => {
+		vscode.window.showInformationMessage('chaos正在运行中');
+	}));
+    // 实现树视图的初始化
+	// TreeViewProvider.initTreeViewItem();
+	addEvent('Chaos.todos.addItem',()=>{
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('Chaos.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Chaos!');
 	});
 
-	context.subscriptions.push(disposable);
-}
+	addEvent('Chaos.openFile', () => {
+		let options = {
+			canSelectFiles: false,		//是否可选择文件
+			canSelectFolders: true,		//是否可选择目录
+			canSelectMany: false,		//是否可多选
+			defaultUri: vscode.Uri.file("D:/VScode"),	//默认打开的文件夹
+			openLabel: '选择文件夹'
+		};
+		//向用户显示“文件打开”对话框，允许用户选择用于打开目的的文件。
+		vscode.window.showOpenDialog(options).then(result => {
+			if(result === undefined){
+				vscode.window.showInformationMessage("can't open dir.");
+			}
+			else{
+				vscode.window.showInformationMessage("open dir: " + result.toString());
+			}
+		});
+	});
 
-// this method is called when your extension is deactivated
+	addEvent('MyTreeItem.itemClick', (label, filePath) => {
+		//TODO：可以获取文件内容显示出来，这里暂时只打印入参
+		console.log("label : " + label);
+		console.log("filePath : " + filePath);
+	});
+
+	// 添加命令
+	function addEvent(command:string,callback:(...args:any[])=>any,thisArg?:any){
+		context.subscriptions.push(vscode.commands.registerCommand(command, callback));
+	}
+}
 export function deactivate() {}

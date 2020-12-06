@@ -1,7 +1,8 @@
 {
-  "name": "Chaos",
+  "name": "chaos",
 	"displayName": "Chaos",
 	"description": "react项目可视化插件",
+	"publisher": "Joker Huang",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.51.0"
@@ -10,7 +11,9 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:Chaos.helloWorld"
+		"onCommand:Chaos.helloWorld",
+		"onCommand:Chaos.openFile",
+		"onCommand:Chaos.todos.addItem"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
@@ -18,13 +21,21 @@
 			{
 				"command": "Chaos.helloWorld",
 				"title": "Hello World"
+			},
+			{
+				"command": "Chaos.todos.addItem",
+				"title": "Add TODOs Item",
+				"icon": {
+					"light": "assets/imgs/add_light.svg",
+					"dark": "assets/imgs/add_dark.svg"
+				}
 			}
 		],
 		"viewsContainers": {
             "activitybar": [
                 {
                     "id": "tree",
-                    "title": "chaos - 可视化工具",
+                    "title": "Chaos - 可视化工具",
                     "icon": "assets/imgs/atom.svg"
                 }
             ]
@@ -48,7 +59,15 @@
                     "name": "NPM脚本"
 				}
             ]
-        }
+		},
+		"menus": {
+			"view/title": [{
+				"command": "Chaos.todos.addItem",
+				"when": "view == tree.views.todos",
+				"group": "navigation"
+			}]
+		}
+		
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
