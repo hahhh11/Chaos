@@ -1,24 +1,46 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 import { TreeViewProvider } from './TreeViewProvider';
 import { createWebView } from './WebView';
+import { TodoDataProvider } from './TodosDataProvider';
 export function activate(context: vscode.ExtensionContext) {
+	
+	const todosFilePath = './todos.json';
+	
 
-	context.subscriptions.push(vscode.commands.registerCommand('Chaos.helloWorld', () => {
-		vscode.window.showInformationMessage('chaos正在运行中');
-	}));
-    // 实现树视图的初始化
-	// TreeViewProvider.initTreeViewItem();
-	addEvent('Chaos.todos.addItem',()=>{
-		const panel = vscode.window.createWebviewPanel(
-			'catCoding', // Identifies the type of the webview. Used internally
-			'Cat Coding', // Title of the panel displayed to the user
-			vscode.ViewColumn.One, // Editor column to show the new webview panel in.
-			{} // Webview options. More on these later.
-		  );
-
-		
-		  panel.webview.html = getWebviewContent();
+	// 绑定视图
+	
+	addEvent('Chaos.helloWorld',()=>{
+		let hasTodos = fs.existsSync(todosFilePath);
+		console.log(hasTodos);
+		vscode.window.showInformationMessage(hasTodos.toString());
+		if(hasTodos){
+			let content = fs.readFileSync(todosFilePath);
+			console.log(content);
+			//@ts-ignore
+			let json = JSON.parse(content);
+			console.log(json);
+			vscode.window.registerTreeDataProvider('tree.views.todos',new TodoDataProvider(content));
+		} else {
+			let sss = {};
+			let content = fs.writeFileSync(todosFilePath,JSON.stringify(sss) );
+			console.log(content);
+		}
 	});
+
+	addEvent('Chaos.todos.addItem',(content)=>{
+		console.log(content);
+		const todoDetailPanel = vscode.window.createWebviewPanel("TodoDetail","TODO详情",vscode.ViewColumn.One,{});
+		todoDetailPanel.webview.html = `<html><body><div>${content}</div></body></html>`;
+	});
+
+
+	// addEvent('Chaos.helloWorld', () => {
+	// 	vscode.window.showInformationMessage('Chaos正在运行中');
+	// });
+    // 实现树视图的初始化 
+	// TreeViewProvider.initTreeViewItem();
+	
 
 	addEvent('Chaos.openFile', () => {
 		let options = {
@@ -39,16 +61,12 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	});
 
-	addEvent('MyTreeItem.itemClick', (label, filePath) => {
-		//TODO：可以获取文件内容显示出来，这里暂时只打印入参
-		console.log("label : " + label);
-		console.log("filePath : " + filePath);
-	});
 
 	// 添加命令
 	function addEvent(command:string,callback:(...args:any[])=>any,thisArg?:any){
 		context.subscriptions.push(vscode.commands.registerCommand(command, callback));
 	}
+	
 
 	function getWebviewContent() {
 		return `<!DOCTYPE html>
@@ -59,7 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
 		  <title>Cat Coding</title>
 	  </head>
 	  <body>
-		  <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" />
+		  <iframe src="https://beacon.duiba.com.cn/" width="100%"></iframe>
 	  </body>
 	  </html>`;
 	  }

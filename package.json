@@ -1,7 +1,7 @@
 {
-  "name": "chaos",
+	"name": "chaos",
 	"displayName": "Chaos",
-	"description": "react项目可视化插件",
+	"description": "react项目插件",
 	"publisher": "Joker Huang",
 	"version": "0.0.1",
 	"engines": {
@@ -17,48 +17,52 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [
-			{
+		"commands": [{
 				"command": "Chaos.helloWorld",
 				"title": "Hello World"
 			},
 			{
+				"command": "Chaos.todos.init",
+				"title": "初始化Todos列表"
+			},
+			{
 				"command": "Chaos.todos.addItem",
-				"title": "Add TODOs Item",
+				"title": "添加Todos",
 				"icon": {
 					"light": "assets/imgs/add_light.svg",
 					"dark": "assets/imgs/add_dark.svg"
 				}
+			},
+			{
+				"command": "Chaos.todos.clickItem",
+				"title": "显示Todos详情"
 			}
 		],
 		"viewsContainers": {
-            "activitybar": [
-                {
-                    "id": "tree",
-                    "title": "Chaos - 可视化工具",
-                    "icon": "assets/imgs/atom.svg"
-                }
-            ]
-        },
-        "views": {
-            "tree": [
-				{
+			"activitybar": [{
+				"id": "tree",
+				"title": "Chaos - 插件",
+				"icon": "assets/imgs/atom.svg"
+			}]
+		},
+		"views": {
+			"tree": [{
 					"id": "tree.views.todos",
 					"name": "TODO列表"
 				},
 				{
-                    "id": "tree.views.pages",
-                    "name": "页面列表"
+					"id": "tree.views.pages",
+					"name": "页面列表"
 				},
 				{
-                    "id": "tree.views.components",
-                    "name": "组件列表"
-                },
-                {
-                    "id": "tree.views.npmScripts",
-                    "name": "NPM脚本"
+					"id": "tree.views.components",
+					"name": "组件列表"
+				},
+				{
+					"id": "tree.views.npmScripts",
+					"name": "NPM脚本"
 				}
-            ]
+			]
 		},
 		"menus": {
 			"view/title": [{
@@ -67,7 +71,6 @@
 				"group": "navigation"
 			}]
 		}
-		
 	},
 	"scripts": {
 		"vscode:prepublish": "yarn run package",
@@ -81,19 +84,23 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.51.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.0",
 		"@types/node": "^12.11.7",
-		"eslint": "^7.9.0",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.51.0",
+		"@types/mkdirp": "^1.0.1",
+		"global": "^4.4.0",
 		"@typescript-eslint/eslint-plugin": "^4.1.1",
 		"@typescript-eslint/parser": "^4.1.1",
+		"eslint": "^7.9.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.1.3",
+		"ts-loader": "^8.0.3",
 		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0",
-		"ts-loader": "^8.0.3",
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12"
-	}
+	},
+	"dependencies": {}
 }
