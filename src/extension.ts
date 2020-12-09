@@ -1,37 +1,58 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
 import { TreeViewProvider } from './TreeViewProvider';
 import { createWebView } from './WebView';
 import { TodoDataProvider } from './TodosDataProvider';
+import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 export function activate(context: vscode.ExtensionContext) {
 	
 	const todosFilePath = './todos.json';
+	let fsProvider = new DateiFileSystemProvider();
 	
+	let hasTodos = fsProvider.exists(vscode.Uri.file(todosFilePath));
+	let todoList = {};
+	console.log(hasTodos);
 
-	// 绑定视图
-	
-	addEvent('Chaos.helloWorld',()=>{
-		let hasTodos = fs.existsSync(todosFilePath);
+	// openStrInWindow( JSON.stringify(todoList),"json");
+	console.log(context);
+	vscode.window.showInformationMessage("" );
+	if(!hasTodos){
+		// let content = vscode.workspace.fs.writeFile(vscode.Uri.parse(todosFilePath), JSON.stringify(todoList)  );
+		// console.log(content);
+	}
+
+	let a = vscode.workspace.fs.readFile(vscode.Uri.parse(todosFilePath));
+	console.log(a);
+	vscode.workspace.openTextDocument(todosFilePath)
+		.then(doc => {
+			// 在VSCode编辑窗口展示读取到的文本
+			vscode.window.showTextDocument(doc);
+	});
+
+
+
+
+	addEvent('Chaos.helloWorld',async ()=>{
+		let	hasTodos = await fsProvider.exists(vscode.Uri.file(todosFilePath));
 		console.log(hasTodos);
 		vscode.window.showInformationMessage(hasTodos.toString());
 		if(hasTodos){
-			let content = fs.readFileSync(todosFilePath);
-			console.log(content);
+			let content = await fsProvider.readFile(vscode.Uri.file(todosFilePath));
 			//@ts-ignore
 			let json = JSON.parse(content);
 			console.log(json);
 			vscode.window.registerTreeDataProvider('tree.views.todos',new TodoDataProvider(content));
 		} else {
 			let sss = {};
-			let content = fs.writeFileSync(todosFilePath,JSON.stringify(sss) );
-			console.log(content);
+			let buff = string2buffer(JSON.stringify(sss));
+			let content2 = await fsProvider.writeFile(vscode.Uri.file(todosFilePath),buff,{create:true,overwrite:true} );
+			console.log(content2);
 		}
 	});
 
 	addEvent('Chaos.todos.addItem',(content)=>{
 		console.log(content);
 		const todoDetailPanel = vscode.window.createWebviewPanel("TodoDetail","TODO详情",vscode.ViewColumn.One,{});
-		todoDetailPanel.webview.html = `<html><body><div>${content}</div></body></html>`;
+		todoDetailPanel.webview.html = `<html><body><div><textarea></textarea></div></body></html>`;
 	});
 
 
@@ -66,7 +87,41 @@ export function activate(context: vscode.ExtensionContext) {
 	function addEvent(command:string,callback:(...args:any[])=>any,thisArg?:any){
 		context.subscriptions.push(vscode.commands.registerCommand(command, callback));
 	}
+
+	function code2utf8(uni:any) {
+		let uni2 = uni.toString(2)
+		if (uni < 128) {
+			return uni.toString(16);
+		} else if (uni < 2048) {
+			uni2 = ('00000000000000000' + uni2).slice(-11);
+			const s1 =  parseInt("110" + uni2.substring(0, 5), 2);
+			const s2 =  parseInt("10" + uni2.substring(5), 2);
+			return s1.toString(16) + ',' + s2.toString(16)
+		} else {
+			uni2 = ('00000000000000000' + uni2).slice(-16);
+			const s1 = parseInt('1110' + uni2.substring(0, 4),2 );
+			const s2 = parseInt('10' + uni2.substring(4, 10), 2 );
+			const s3 = parseInt('10' + uni2.substring(10), 2);
+			return s1.toString(16) + ',' + s2.toString(16) + ',' + s3.toString(16)
+		}
+	}
 	
+	function string2buffer(str:string) {
+		let val = ""
+		for (let i = 0; i < str.length; i++) {
+			val += ',' + code2utf8(str.charCodeAt(i));
+		}
+		val += ',00';
+		console.log(val);
+		if(!val){
+			val = "";
+		}
+		// 将16进制转化为ArrayBuffer
+		//@ts-ignore
+		return new Uint8Array(val.match(/[\da-f]{2}/gi).map(function (h) {
+			return parseInt(h, 16);
+		}));
+	}
 
 	function getWebviewContent() {
 		return `<!DOCTYPE html>
@@ -83,3 +138,52 @@ export function activate(context: vscode.ExtensionContext) {
 	  }
 }
 export function deactivate() {}
+
+
+/**
+ * 打开字符串文本
+ * @param fileContent 
+ * @param fileLanguage  常见类型有 xml, python, java, javascript, typescript, c 等
+ */
+export function openStrInWindow(fileContent: string, fileLanguage: string = 'xml') {
+    var option = {
+        language: fileLanguage,
+        content: fileContent
+    };
+    vscode.workspace.openTextDocument(option)
+        .then(doc => {
+            vscode.window.showTextDocument(doc);
+        }, err => {
+            console.error('Open string in window err,' + err);
+        }).then(undefined, err => {
+            // 捕获异常，相当于try-catch
+            console.error('Open string in window err,' + err);
+        });
+}
+/**
+ * 修改在VSCode编辑器中打开的文档内容并且继续展示
+ */
+export function editOpenedFileInWindow(filePath: string) {
+    // 获取 vscode.TextDocument对象
+    vscode.workspace.openTextDocument(filePath).then(doc => {
+        // 获取 vscode.TextEditor对象
+        vscode.window.showTextDocument(doc).then(editor => {
+            // 获取 vscode.TextEditorEdit对象， 然后进行字符处理
+            editor.edit(editorEdit => {
+                // 这里可以做以下操作: 删除, 插入, 替换, 设置换行符
+                // 以插入字符串为例: "Hello Word\r\n"
+                editorEdit.insert(new vscode.Position(0, 0), "Hello Word\r\n");
+            }).then(isSuccess => {
+                if (isSuccess) {
+                    console.log("Edit successed");
+                } else {
+                    console.log("Edit failed");
+                }
+            }, err => {
+                console.error("Edit error, " + err);
+            });
+        });
+    }).then(undefined, err => {
+        console.error(err);
+    });
+}

@@ -11,9 +11,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:Chaos.helloWorld",
-		"onCommand:Chaos.openFile",
-		"onCommand:Chaos.todos.addItem"
+		"*"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
