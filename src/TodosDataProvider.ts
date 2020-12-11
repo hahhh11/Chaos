@@ -1,9 +1,9 @@
 import { TreeDataProvider, TreeItem, TreeView, TreeItemCollapsibleState, window} from "vscode";
-import { TodoTreeItem } from "./Todos";
 import * as fs from 'fs';
 import * as path from 'path';
+import { fixString, timeFun } from "./extConst";
 
-export class TodoDataProvider implements TreeDataProvider<TodoTreeItem>{
+export class TodoDataProvider implements TreeDataProvider<TodoItem>{
     // private info;
     private workspaceRoot = "";
 
@@ -76,7 +76,7 @@ export class TodoDataProvider implements TreeDataProvider<TodoTreeItem>{
         return true;
     }
 
-    getParent(element: TodoTreeItem){
+    getParent(element: TodoItem){
         return null;
     }
 }
@@ -87,10 +87,10 @@ class TodoItem extends TreeItem{
     
     constructor(itemInfo:any) {
         super('',TreeItemCollapsibleState.None);
-        this.label = itemInfo.content;
+        this.label = fixString(itemInfo.content,12) ;
         this.id = itemInfo.id?itemInfo.id:null;
-        this.timestamp = itemInfo.timestamp+"";
-        this.description = itemInfo.timestamp+"";
+        this.timestamp =  itemInfo.timestamp+"";
+        this.description = timeFun.getTimeFormat(itemInfo.timestamp);
         this.state = itemInfo.state?itemInfo.state:TodoState.todo;
         this.command = {
             title:'点击查看详情',
