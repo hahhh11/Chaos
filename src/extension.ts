@@ -4,32 +4,19 @@ import { createWebView } from './WebView';
 import { TodoDataProvider } from './TodosDataProvider';
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 export function activate(context: vscode.ExtensionContext) {
+
+	vscode.window.registerTreeDataProvider(
+		'tree.views.todos',
+		new TodoDataProvider(vscode.workspace.rootPath)
+	);
+
+	vscode.window.createTreeView('tree.views.todos', {
+		treeDataProvider: new TodoDataProvider(vscode.workspace.rootPath)
+	});
 	
-	const todosFilePath = './todos.json';
+	const todosFilePath = 'D:/todos.json';
 	let fsProvider = new DateiFileSystemProvider();
 	
-	let hasTodos = fsProvider.exists(vscode.Uri.file(todosFilePath));
-	let todoList = {};
-	console.log(hasTodos);
-
-	// openStrInWindow( JSON.stringify(todoList),"json");
-	console.log(context);
-	vscode.window.showInformationMessage("" );
-	if(!hasTodos){
-		// let content = vscode.workspace.fs.writeFile(vscode.Uri.parse(todosFilePath), JSON.stringify(todoList)  );
-		// console.log(content);
-	}
-
-	let a = vscode.workspace.fs.readFile(vscode.Uri.parse(todosFilePath));
-	console.log(a);
-	vscode.workspace.openTextDocument(todosFilePath)
-		.then(doc => {
-			// 在VSCode编辑窗口展示读取到的文本
-			vscode.window.showTextDocument(doc);
-	});
-
-
-
 
 	addEvent('Chaos.helloWorld',async ()=>{
 		let	hasTodos = await fsProvider.exists(vscode.Uri.file(todosFilePath));
@@ -40,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 			//@ts-ignore
 			let json = JSON.parse(content);
 			console.log(json);
-			vscode.window.registerTreeDataProvider('tree.views.todos',new TodoDataProvider(content));
+			// vscode.window.registerTreeDataProvider('tree.views.todos',new TodoDataProvider(content));
 		} else {
 			let sss = {};
 			let buff = string2buffer(JSON.stringify(sss));
@@ -50,9 +37,14 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	addEvent('Chaos.todos.addItem',(content)=>{
-		console.log(content);
-		const todoDetailPanel = vscode.window.createWebviewPanel("TodoDetail","TODO详情",vscode.ViewColumn.One,{});
+		const todoDetailPanel = vscode.window.createWebviewPanel("AddTodoItem","新增TODO",vscode.ViewColumn.One,{});
 		todoDetailPanel.webview.html = `<html><body><div><textarea></textarea></div></body></html>`;
+	});
+
+	addEvent('Chaos.todos.clickItem',(itemInfo)=>{
+		const todoDetailPanel = vscode.window.createWebviewPanel("TodoDetail","TODO详情",vscode.ViewColumn.One,{});
+		todoDetailPanel.webview.html = `<html><body><div>${itemInfo.content}</div></body></html>`;
+		// vscode.window.showTextDocument(itemInfo.label);
 	});
 
 
@@ -63,24 +55,24 @@ export function activate(context: vscode.ExtensionContext) {
 	// TreeViewProvider.initTreeViewItem();
 	
 
-	addEvent('Chaos.openFile', () => {
-		let options = {
-			canSelectFiles: false,		//是否可选择文件
-			canSelectFolders: true,		//是否可选择目录
-			canSelectMany: false,		//是否可多选
-			defaultUri: vscode.Uri.file("D:/VScode"),	//默认打开的文件夹
-			openLabel: '选择文件夹'
-		};
-		//向用户显示“文件打开”对话框，允许用户选择用于打开目的的文件。
-		vscode.window.showOpenDialog(options).then(result => {
-			if(result === undefined){
-				vscode.window.showInformationMessage("can't open dir.");
-			}
-			else{
-				vscode.window.showInformationMessage("open dir: " + result.toString());
-			}
-		});
-	});
+	// addEvent('Chaos.openFile', () => {
+	// 	let options = {
+	// 		canSelectFiles: false,		//是否可选择文件
+	// 		canSelectFolders: true,		//是否可选择目录
+	// 		canSelectMany: false,		//是否可多选
+	// 		defaultUri: vscode.Uri.file("D:/VScode"),	//默认打开的文件夹
+	// 		openLabel: '选择文件夹'
+	// 	};
+	// 	//向用户显示“文件打开”对话框，允许用户选择用于打开目的的文件。
+	// 	vscode.window.showOpenDialog(options).then(result => {
+	// 		if(result === undefined){
+	// 			vscode.window.showInformationMessage("can't open dir.");
+	// 		}
+	// 		else{
+	// 			vscode.window.showInformationMessage("open dir: " + result.toString());
+	// 		}
+	// 	});
+	// });
 
 
 	// 添加命令
@@ -89,25 +81,25 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function code2utf8(uni:any) {
-		let uni2 = uni.toString(2)
+		let uni2 = uni.toString(2);
 		if (uni < 128) {
 			return uni.toString(16);
 		} else if (uni < 2048) {
 			uni2 = ('00000000000000000' + uni2).slice(-11);
 			const s1 =  parseInt("110" + uni2.substring(0, 5), 2);
 			const s2 =  parseInt("10" + uni2.substring(5), 2);
-			return s1.toString(16) + ',' + s2.toString(16)
+			return s1.toString(16) + ',' + s2.toString(16);
 		} else {
 			uni2 = ('00000000000000000' + uni2).slice(-16);
 			const s1 = parseInt('1110' + uni2.substring(0, 4),2 );
 			const s2 = parseInt('10' + uni2.substring(4, 10), 2 );
 			const s3 = parseInt('10' + uni2.substring(10), 2);
-			return s1.toString(16) + ',' + s2.toString(16) + ',' + s3.toString(16)
+			return s1.toString(16) + ',' + s2.toString(16) + ',' + s3.toString(16);
 		}
 	}
 	
 	function string2buffer(str:string) {
-		let val = ""
+		let val = "";
 		for (let i = 0; i < str.length; i++) {
 			val += ',' + code2utf8(str.charCodeAt(i));
 		}
