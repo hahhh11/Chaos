@@ -2,13 +2,15 @@ import { TreeDataProvider, TreeItem, TreeView, TreeItemCollapsibleState, window}
 import * as fs from 'fs';
 import * as path from 'path';
 import { fixString, timeFun } from "./extConst";
+import { publicDecrypt } from "crypto";
 
 export class TodoDataProvider implements TreeDataProvider<TodoItem>{
     // private info;
-    private workspaceRoot = "";
-
-    constructor(workspaceRoot?: string) {
-        this.workspaceRoot = workspaceRoot ? workspaceRoot : "";
+    private todoRoot = "";
+    public todosJsonPath = "";
+    constructor(todoRoot?: string) {
+        this.todoRoot = todoRoot ? todoRoot : "";
+        this.todosJsonPath =  path.join(this.todoRoot, 'Todos.json');
     }
 
     getTreeItem(element: TodoItem): TreeItem {
@@ -16,29 +18,31 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
     }
 
     getChildren(element?: TodoItem): Thenable<TodoItem[]> {
-        if (!this.workspaceRoot) {
-            window.showInformationMessage('No TodoItem in empty workspace');
+        if (!this.todoRoot) {
+            window.showInformationMessage('No todoRoot');
             return Promise.resolve([]);
         }
-        console.log(this.workspaceRoot);
-        const todosJsonPath = path.join(this.workspaceRoot, 'Todos.json');
-        if (this.pathExists(todosJsonPath)) {
+        console.log(this.todoRoot);
+        if (this.pathExists(this.todosJsonPath)) {
             // 存在就读取
-            return Promise.resolve(this.getItemsInTodosJson(todosJsonPath));
+            return Promise.resolve(this.getItemsInTodosJson(this.todosJsonPath));
         } else {
             // 不存在就生成
             try{
                 let buff = {
                     "todoList":[
                         {
-                            "timestamp":"${Date.now()}",
-                            "content":"adfasdfasdf"
+                            "timestamp":Date.now(),
+                            "content":"TODO示例-欢迎使用Chaos",
+                            "state":TodoState.todo,
+                            "id":0
                         }
                     ]
                 };
-                fs.writeFileSync(todosJsonPath, JSON.stringify(buff), 'utf-8');
-                let has = this.pathExists(todosJsonPath);
-                return Promise.resolve(this.getItemsInTodosJson(todosJsonPath));
+                let has = this.pathExists(this.todosJsonPath);
+                fs.writeFileSync(this.todosJsonPath, JSON.stringify(buff), 'utf-8');
+                
+                return Promise.resolve(this.getItemsInTodosJson(this.todosJsonPath));
             }catch(e){
                 window.showInformationMessage(e);
                 return Promise.resolve([]);
@@ -46,9 +50,19 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
         }
     }
 
-    /**
-     * Given the path to package.json, read all its dependencies and devDependencies.
-     */
+    public updateTodoJson(todoInfo:TODO){
+        let items = this.getItemsInTodosJson(this.todosJsonPath)
+        let newItems = items.map(item => {
+            if(item.id === todoInfo.id){
+                item.content = todoInfo.content;
+            }
+        })
+        let buff = {
+            todoList:newItems
+        }
+        fs.writeFileSync(this.todosJsonPath, JSON.stringify(buff), 'utf-8');
+    }
+
     private getItemsInTodosJson(todosJsonPath: string): TodoItem[] {
         if (this.pathExists(todosJsonPath)) {
             const todoJson = fs.readFileSync(todosJsonPath, 'utf-8');
@@ -57,7 +71,6 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
             let _todoJson = JSON.parse(todoJson);
             //@ts-ignore
             const todoItems =  _todoJson['todoList'].map((item: any) => {
-                console.log(item);
                 return new TodoItem(item);
             });
 
@@ -84,11 +97,12 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
 class TodoItem extends TreeItem{
     public timestamp:string;
     public state:TodoState;
-    
+    public content:string
     constructor(itemInfo:any) {
         super('',TreeItemCollapsibleState.None);
-        this.label = fixString(itemInfo.content,12) ;
-        this.id = itemInfo.id?itemInfo.id:null;
+        this.content = itemInfo.content;
+        this.label = fixString(itemInfo.content,18) ;
+        this.id = itemInfo.id?itemInfo.id:0;
         this.timestamp =  itemInfo.timestamp+"";
         this.description = timeFun.getTimeFormat(itemInfo.timestamp);
         this.state = itemInfo.state?itemInfo.state:TodoState.todo;
@@ -97,6 +111,22 @@ class TodoItem extends TreeItem{
             command:"Chaos.todos.clickItem",
             arguments:[itemInfo]   
         };
+    }
+}
+
+export interface TODO{
+    timestamp:number,
+    id:string,
+    content:string,
+    state:TodoState
+}
+
+export class TODO implements TODO {
+    constructor(content:string,state?:TodoState,id?:string,timestamp?:number){
+        this.content = content
+        this.state = state?state:TodoState.todo;
+        this.id = id?id:"TODO_"+Date.now(),
+        this.timestamp = timestamp?timestamp:Date.now()
     }
 }
 

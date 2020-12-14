@@ -32,6 +32,14 @@
 				}
 			},
 			{
+				"command": "Chaos.todos.removeItem",
+				"title": "删除Todos",
+				"icon": {
+					"light": "assets/imgs/remove_light.svg",
+					"dark": "assets/imgs/remove_dark.svg"
+				}
+			},
+			{
 				"command": "Chaos.todos.clickItem",
 				"title": "显示Todos详情"
 			}
@@ -63,11 +71,18 @@
 			]
 		},
 		"menus": {
-			"view/title": [{
-				"command": "Chaos.todos.addItem",
-				"when": "view == tree.views.todos",
-				"group": "navigation"
-			}]
+			"view/title": [
+				{
+					"command": "Chaos.todos.addItem",
+					"when": "view == tree.views.todos",
+					"group": "navigation"
+				},
+				{
+					"command": "Chaos.todos.removeItem",
+					"when": "view == tree.views.todos.todo",
+					"group": "navigation"
+				}
+			]
 		}
 	},
 	"scripts": {

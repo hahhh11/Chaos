@@ -1,30 +1,52 @@
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
-import { createWebView } from './WebView';
-import { TodoDataProvider } from './TodosDataProvider';
+import { createWebView, createTodoWebView} from './WebView';
+import { TodoDataProvider, TODO } from './TodosDataProvider';
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
+import * as path from 'path';
 export function activate(context: vscode.ExtensionContext) {
-
+	let todoRoot = context.extensionPath
+	console.log("插件路径：",todoRoot)
+	const todoDataProvider = new TodoDataProvider(todoRoot)
 	vscode.window.registerTreeDataProvider(
 		'tree.views.todos',
-		new TodoDataProvider(vscode.workspace.rootPath)
+		todoDataProvider
 	);
 
 	vscode.window.createTreeView('tree.views.todos', {
-		treeDataProvider: new TodoDataProvider(vscode.workspace.rootPath)
+		treeDataProvider: todoDataProvider
 	});
 
 	
 	addEvent('Chaos.todos.addItem',(content)=>{
-		const todoDetailPanel = vscode.window.createWebviewPanel("AddTodoItem","新增TODO",vscode.ViewColumn.One,{});
-		todoDetailPanel.webview.html = `<html><body><div><textarea></textarea></div></body></html>`;
+		let itemInfo = new TODO("")
+		const todoDetailPanel = createTodoWebView(context,itemInfo)
 	});
 
 	addEvent('Chaos.todos.clickItem',(itemInfo)=>{
-		const todoDetailPanel = vscode.window.createWebviewPanel("TodoDetail","TODO详情",vscode.ViewColumn.One,{});
-		todoDetailPanel.webview.html = `<html><body><div>${itemInfo.content}</div></body></html>`;
-		// vscode.window.showTextDocument(itemInfo.label);
-	});
+		const todoDetailPanel = createTodoWebView(context,itemInfo)
+		todoDetailPanel.webview.onDidReceiveMessage(
+			message => {
+				switch (message.command) {
+					case 'saveTodoItem':
+						console.log(message.itemInfo)
+						todoDataProvider.updateTodoJson(message.itemInfo)
+						vscode.window.createTreeView('tree.views.todos', {
+							treeDataProvider: todoDataProvider
+						});
+					break;
+				}
+			}, 
+			undefined, 
+			context.subscriptions
+			);
+		});
+
+	addEvent('Chaos.todos.mergeItem',(item)=>{
+		// 合并项
+	})
+
+	
 
 	// 添加命令
 	function addEvent(command:string,callback:(...args:any[])=>any,thisArg?:any){
