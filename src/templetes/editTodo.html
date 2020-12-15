@@ -156,6 +156,11 @@
             color: #deeffd;
         }
 
+        .btn.btn-delete {
+            background: #ff0000;
+            color: #bce0fb;
+        }
+
         .btn.btn-cancel {
             background: #eee;
         }
@@ -184,6 +189,7 @@
             </div>
             <div class="btn-box">
                 <button type="submit" class="btn btn-submit" onclick="saveValue()">保存</button>
+                <button type="submit" class="btn btn-delete" onclick="deleteTODO()">删除</button>
             </div>
         </form>
     </div>
@@ -198,6 +204,12 @@
         console.log(itemInfo)
         vscode.postMessage({
             command: 'saveTodoItem',
+            itemInfo: itemInfo
+        })
+    }
+    function deleteTODO(){
+        vscode.postMessage({
+            command: 'deleteTODO',
             itemInfo: itemInfo
         })
     }
