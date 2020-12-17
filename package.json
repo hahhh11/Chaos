@@ -15,11 +15,12 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Chaos",
+			"properties": {}
+		},
 		"commands": [{
-				"command": "Chaos.helloWorld",
-				"title": "Hello World"
-			},
-			{
 				"command": "Chaos.todos.init",
 				"title": "初始化Todos列表"
 			},
@@ -54,29 +55,16 @@
 		],
 		"viewsContainers": {
 			"activitybar": [{
-				"id": "tree",
-				"title": "Chaos - 插件",
+				"id": "Chaos",
+				"title": "Chaos - v0.0.1",
 				"icon": "assets/imgs/atom.svg"
 			}]
 		},
 		"views": {
-			"tree": [{
-					"id": "tree.views.todos",
-					"name": "TODO列表"
-				},
-				{
-					"id": "tree.views.pages",
-					"name": "页面列表"
-				},
-				{
-					"id": "tree.views.components",
-					"name": "组件列表"
-				},
-				{
-					"id": "tree.views.npmScripts",
-					"name": "NPM脚本"
-				}
-			]
+			"Chaos": [{
+				"id": "Chaos.views.todos",
+				"name": "TODO列表"
+			}]
 		},
 		"menus": {
 			"view/title": [{
@@ -86,11 +74,13 @@
 			}],
 			"view/item/context": [{
 					"command": "Chaos.todos.removeItem",
-					"group": "inline"
+					"group": "inline",
+					"when": "view==''"
 				},
 				{
 					"command": "Chaos.todos.completeItem",
-					"group": "inline"
+					"group": "inline",
+					"when": "view==''"
 				}
 
 			]

@@ -1,19 +1,21 @@
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
 import { createWebView, createTodoWebView, getHtmlByName } from './WebView';
-import { TodoDataProvider, TODO } from './TodosDataProvider';
+import { TodoDataProvider } from './Todo/TodosDataProvider';
+import { TODO } from './Todo/todo'
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 import * as path from 'path';
 export function activate(context: vscode.ExtensionContext) {
+	//https://www.zcool.com.cn/work/ZMzIzMjA5MzY=.html
 	let todoRoot = context.extensionPath
 	console.log("插件路径：", todoRoot)
 	const todoDataProvider = new TodoDataProvider(todoRoot)
 	vscode.window.registerTreeDataProvider(
-		'tree.views.todos',
+		'Chaos.views.todos',
 		todoDataProvider
 	);
 
-	vscode.window.createTreeView('tree.views.todos', {
+	vscode.window.createTreeView('Chaos.views.todos', {
 		treeDataProvider: todoDataProvider
 	});
 

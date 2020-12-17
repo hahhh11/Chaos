@@ -1,1 +1,10 @@
-{"todoList":[{"content":"asdfasdfasdfadfasdfsd","state":0,"id":"TODO_1608200272825","timestamp":1608200272825}]}
+{
+    "todoList": [{
+        "content": "asdfasdfasdfadfasdfsd",
+        "state": 0,
+        "id": "TODO_1608200272825",
+        "timestamp": 1608200272825
+    }],
+    "completeList": [],
+    "trash": []
+}

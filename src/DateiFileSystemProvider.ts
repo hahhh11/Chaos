@@ -68,7 +68,7 @@ export class DateiFileSystemProvider implements vscode.FileSystemProvider {
         return this._writeFile(uri, content, options);
     }
 
-    async exists(uri:vscode.Uri){
+    async exists(uri: vscode.Uri) {
         const exists = await _.exists(uri.fsPath);
         return exists;
     }
@@ -236,6 +236,7 @@ namespace _ {
                 if (error || lstat.isSymbolicLink()) {
                     fs.stat(path, (error, stat) => {
                         if (error) {
+                            //@ts-ignore
                             return handleResult(resolve, reject, error, void 0);
                         }
 
