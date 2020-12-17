@@ -33,15 +33,23 @@
 			},
 			{
 				"command": "Chaos.todos.removeItem",
-				"title": "删除Todos",
+				"title": "删除",
 				"icon": {
 					"light": "assets/imgs/remove_light.svg",
 					"dark": "assets/imgs/remove_dark.svg"
 				}
 			},
 			{
+				"command": "Chaos.todos.completeItem",
+				"title": "完成",
+				"icon": {
+					"light": "assets/imgs/complete_light.svg",
+					"dark": "assets/imgs/complete_dark.svg"
+				}
+			},
+			{
 				"command": "Chaos.todos.clickItem",
-				"title": "显示Todos详情"
+				"title": "显示TODO详情"
 			}
 		],
 		"viewsContainers": {
@@ -71,17 +79,20 @@
 			]
 		},
 		"menus": {
-			"view/title": [
-				{
-					"command": "Chaos.todos.addItem",
-					"when": "view == tree.views.todos",
-					"group": "navigation"
+			"view/title": [{
+				"command": "Chaos.todos.addItem",
+				"when": "view == tree.views.todos",
+				"group": "navigation"
+			}],
+			"view/item/context": [{
+					"command": "Chaos.todos.removeItem",
+					"group": "inline"
 				},
 				{
-					"command": "Chaos.todos.removeItem",
-					"when": "view == tree.views.todos.todo",
-					"group": "navigation"
+					"command": "Chaos.todos.completeItem",
+					"group": "inline"
 				}
+
 			]
 		}
 	},

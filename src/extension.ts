@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
-import { createWebView, createTodoWebView } from './WebView';
+import { createWebView, createTodoWebView, getHtmlByName } from './WebView';
 import { TodoDataProvider, TODO } from './TodosDataProvider';
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 import * as path from 'path';
@@ -17,14 +17,15 @@ export function activate(context: vscode.ExtensionContext) {
 		treeDataProvider: todoDataProvider
 	});
 
-	let a = vscode.window.createWebviewPanel('TodoDetail',                          // 标识，随意命名
-		"TODO详情",                              // 面板标题
-		vscode.ViewColumn.One)
-	a.webview.html = `<iframe width="1000" height="1000" src="http://www.w3cschool.cc"></iframe>`
+	let todoDetailPanel: vscode.WebviewPanel;
 	addEvent('Chaos.todos.addItem', (content) => {
 
 		let itemInfo = new TODO("")
-		const todoDetailPanel = createTodoWebView(context, itemInfo)
+		if (!todoDetailPanel) {
+			todoDetailPanel = createTodoWebView(context, itemInfo)
+		} else {
+			todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
+		}
 		todoDetailPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
@@ -43,7 +44,11 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	addEvent('Chaos.todos.clickItem', (itemInfo) => {
-		const todoDetailPanel = createTodoWebView(context, itemInfo)
+		if (!todoDetailPanel) {
+			todoDetailPanel = createTodoWebView(context, itemInfo)
+		} else {
+			todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
+		}
 		todoDetailPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
@@ -66,6 +71,20 @@ export function activate(context: vscode.ExtensionContext) {
 			context.subscriptions
 		);
 	});
+
+	addEvent('Chaos.todos.removeItem', (itemInfo) => {
+		todoDataProvider.deleteTodo(itemInfo)
+		vscode.window.createTreeView('tree.views.todos', {
+			treeDataProvider: todoDataProvider
+		});
+	})
+
+	addEvent('Chaos.todos.completeItem', (itemInfo) => {
+		todoDataProvider.completeTodo(itemInfo)
+		vscode.window.createTreeView('tree.views.todos', {
+			treeDataProvider: todoDataProvider
+		});
+	})
 
 	addEvent('Chaos.todos.mergeItem', (item) => {
 		// 合并项

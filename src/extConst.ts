@@ -1,31 +1,31 @@
 import * as vscode from 'vscode';
 
 
-export function fixString(str:string, number = 4){
-	if (!str || str === "") {
-		return "";
-	}
-	let strArr = str.split("");
-	if (strArr.length <= number) {
-		return str;
-	} else {
-		let _name = "";
-		for (let i = 0; i < number; i++) {
-			_name += strArr[i];
-		}
-		_name += "...";
-		return _name;
-	}
+export function fixString(str: string, number = 4) {
+    if (!str || str === "") {
+        return "";
+    }
+    let strArr = str.split("");
+    if (strArr.length <= number) {
+        return str;
+    } else {
+        let _name = "";
+        for (let i = 0; i < number; i++) {
+            _name += strArr[i];
+        }
+        _name += "...";
+        return _name;
+    }
 }
 
-export function string2buffer(str:string) {
+export function string2buffer(str: string) {
     let val = "";
     for (let i = 0; i < str.length; i++) {
         val += ',' + code2utf8(str.charCodeAt(i));
     }
     val += ',00';
     console.log(val);
-    if(!val){
+    if (!val) {
         val = "";
     }
     // 将16进制转化为ArrayBuffer
@@ -83,20 +83,20 @@ export function editOpenedFileInWindow(filePath: string) {
         console.error(err);
     });
 }
- 
-export function code2utf8(uni:any) {
+
+export function code2utf8(uni: any) {
     let uni2 = uni.toString(2);
     if (uni < 128) {
         return uni.toString(16);
     } else if (uni < 2048) {
         uni2 = ('00000000000000000' + uni2).slice(-11);
-        const s1 =  parseInt("110" + uni2.substring(0, 5), 2);
-        const s2 =  parseInt("10" + uni2.substring(5), 2);
+        const s1 = parseInt("110" + uni2.substring(0, 5), 2);
+        const s2 = parseInt("10" + uni2.substring(5), 2);
         return s1.toString(16) + ',' + s2.toString(16);
     } else {
         uni2 = ('00000000000000000' + uni2).slice(-16);
-        const s1 = parseInt('1110' + uni2.substring(0, 4),2 );
-        const s2 = parseInt('10' + uni2.substring(4, 10), 2 );
+        const s1 = parseInt('1110' + uni2.substring(0, 4), 2);
+        const s2 = parseInt('10' + uni2.substring(4, 10), 2);
         const s3 = parseInt('10' + uni2.substring(10), 2);
         return s1.toString(16) + ',' + s2.toString(16) + ',' + s3.toString(16);
     }
@@ -110,14 +110,14 @@ export const timeFun = {
     getTodayMark() {
         return new Date(new Date().setHours(0, 0, 0, 0)).getTime();
     },
-    getTimeFormat(timestamp:number){
+    getTimeFormat(timestamp: number) {
         let time = new Date(timestamp);
         let year = time.getFullYear();
-        let month = time.getMonth()+1;
-        let day = time.getDate();
-        let hour = time.getHours();
-        let minute = time.getMinutes();
-        let second = time.getSeconds();
+        let month = time.getMonth() + 1;
+        let day = time.getDate() < 10 ? "0" + time.getDate() : time.getDate();
+        let hour = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+        let minute = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+        let second = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
 
         return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
     },
@@ -126,7 +126,7 @@ export const timeFun = {
     * @param endTime 结束时间 时间戳
     * @returns 例：剩余时间 {d:1, h:16, m:45, s:41} 代表：1天 16小时 45 分钟41 秒
     */
-    getEndTime(endTime:number) {
+    getEndTime(endTime: number) {
         var startDate = new Date(); //开始时间，当前时间
         var endDate = new Date(endTime); //结束时间，需传入时间参数
         var t = endDate.getTime() - startDate.getTime(); //时间差的毫秒数
