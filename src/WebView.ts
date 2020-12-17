@@ -60,7 +60,7 @@ export function createTodoWebView(context: ExtensionContext, type: string = 'tod
             localResourceRoots: [Uri.file(context.extensionPath)],// 指定允许加载的本地资源的根目录
         }
 
-    )
+    );
 
     webviewPanel.webview.html = getHtmlByName(context, type);
 
@@ -74,28 +74,34 @@ export function createTodoWebView(context: ExtensionContext, type: string = 'tod
 
 // 这个方法没什么了，就是一个 最简单的嵌入 iframe 的 html 页面
 export function getHtmlByName(context: ExtensionContext, name: string, info?: any) {
-    let html = ""
+    // vscode不支持直接加载本地资源，需要替换成其专有路径格式，这里只是简单的将样式和JS的路径替换
+    const resourcePath = path.join(context.extensionPath, 'src', 'templetes', name + ".html");
+    const dirPath = path.dirname(resourcePath);
+    let html = "";
     switch (name) {
         case "editTodo":
-            html = fs.readFileSync(path.join(context.extensionPath, 'src', 'templetes', name + ".html")).toString();
+            html = fs.readFileSync(resourcePath).toString();
             if (info) {
-                html = html.replace("$itemInfo", JSON.stringify(info))
+                html = html.replace("$itemInfo", JSON.stringify(info));
                 // console.log(html)
-                html = html.replace("$editTodoValue", info.content)
+                html = html.replace("$editTodoValue", info.content);
             } else {
 
             }
-            break
+            break;
         case "todoList":
-            html = fs.readFileSync(path.join(context.extensionPath, 'src', 'templetes', name + ".html")).toString();
+            html = fs.readFileSync(resourcePath).toString();
             if (info) {
-                html = html.replace("$itemInfo", JSON.stringify(info))
-                // console.log(html)
-                html = html.replace("$editTodoValue", info.content)
+                html = html.replace('"$todoList"', JSON.stringify(info));
             } else {
-
+                html = html.replace('"$todoList"', JSON.stringify([]));
             }
-            break
+            break;
     }
+    html = html.replace(/(<link.+?href="|<script.+?src="|<img.+?src=")(.+?)"/g, (m, $1, $2) => {
+        return $1 + Uri.file(path.resolve(dirPath, $2)).with({ scheme: 'vscode-resource' }).toString() + '"';
+    });
+    console.log(dirPath);
+    console.log(html);
     return html;
 }

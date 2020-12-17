@@ -6,17 +6,240 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="../libs/bootstrap.min.css"  crossorigin="anonymous">
+    <style type="text/css">
+      *,
+      :before,
+      :after {
+          box-sizing: border-box;
+      }
 
+      body {
+          background: #333333;
+      }
+      .wrapper{
+        background:#333333;
+      }
+      form {
+          width: 90%;
+          margin: 45px auto 30px;
+      }
+
+      form h1 {
+          font-size: 3em;
+          font-weight: 300;
+          text-align: center;
+          color: #2196F3;
+      }
+
+      form h5 {
+          text-align: center;
+          text-transform: uppercase;
+          color: #c6c6c6;
+      }
+
+      form hr.sep {
+          background: #2196F3;
+          box-shadow: none;
+          border: none;
+          height: 2px;
+          width: 25%;
+          margin: 50px auto 35px auto;
+      }
+
+      .group {
+          position: relative;
+          margin:0 0 25px;
+      }
+
+      textarea {
+          resize: none;
+      }
+
+      input,
+      textarea {
+          background: none;
+          color: #c6c6c6;
+          font-size: 18px;
+          padding: 20px 10px 10px 5px;
+          display: block;
+          width: 100%;
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px solid #c6c6c6;
+      }
+
+      input:focus,
+      textarea:focus {
+          outline: none;
+      }
+
+      input:focus~label,
+      input:valid~label,
+      textarea:focus~label,
+      textarea:valid~label {
+          top: -20px;
+          font-size: 20px;
+          color: #2196F3;
+      }
+
+      input:focus~.bar:before,
+      textarea:focus~.bar:before {
+          width: 100%;
+      }
+
+      input[type="password"] {
+          letter-spacing: 0.3em;
+      }
+
+      label {
+          color: #c6c6c6;
+          font-size: 26px;
+          font-weight: normal;
+          position: absolute;
+          pointer-events: none;
+          left: 5px;
+          top: 10px;
+          -webkit-transition: 300ms ease all;
+          transition: 300ms ease all;
+      }
+
+      .bar {
+          position: relative;
+          display: block;
+          width: 100%;
+      }
+
+      .bar:before {
+          content: '';
+          height: 2px;
+          width: 0;
+          bottom: 0px;
+          position: absolute;
+          background: #2196F3;
+          -webkit-transition: 300ms ease all;
+          transition: 300ms ease all;
+          left: 0%;
+      }
+
+      .btn {
+          background: #fff;
+          color: #959595;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 3px;
+          text-transform: uppercase;
+          text-decoration: none;
+          outline: none;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+          -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .btn:hover {
+          color: #8b8b8b;
+          box-shadow: 0 7px 14px rgba(0, 0, 0, 0.18), 0 5px 5px rgba(0, 0, 0, 0.12);
+      }
+
+      .btn.btn-add {
+          background: #2196F3;
+          color: #d3eafd;
+      }
+
+      .btn.btn-add:hover {
+          background: #0d8aee;
+          color: #deeffd;
+      }
+
+      .btn.btn-submit {
+          background: #2196F3;
+          color: #bce0fb;
+      }
+
+      .btn.btn-submit:hover {
+          background: #0d8aee;
+          color: #deeffd;
+      }
+
+      .btn.btn-delete {
+          background: #ff0000;
+          color: #bce0fb;
+      }
+
+      .btn.btn-cancel {
+          background: #eee;
+      }
+
+      .btn.btn-cancel:hover {
+          background: #e1e1e1;
+          color: #8b8b8b;
+      }
+
+      .btn-box {
+          text-align: center;
+          margin: 0;
+      }
+      .todoList {
+        padding:50px 0px
+      }
+      .todoList-MainTitle{
+        padding:0 20px;
+        font-size: 70px;
+        margin: 0;
+        color: #888;
+      }
+    </style>
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container todoList">
+      <p>
+        <span class="todoList-MainTitle">代办</span>
+        <button id="addPlaneBtn" type="button" class="btn btn-add btn-lg" data-toggle="modal" data-target="#addPlanePanel"> + 新建计划</button>
+      </p>
+      <ul id="todoList">
 
+      </ul>
+
+      <!-- 新建代表弹窗 -->
+      <div class="modal fade" id="addPlanePanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content wrapper">
+            <form>
+              <div class="group">
+                  <textarea id="addPlanTextarea" type="textarea" rows="15" required="required"></textarea>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>新建计划</label>
+              </div>
+              <div class="btn-box">
+                  <button id="savePlan" type="submit" class="btn btn-submit" data-dismiss="modal">确定</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="../libs/jquery.slim.min.js"  crossorigin="anonymous"></script>
+    <script src="../libs/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="../libs/bootstrap.min.js" crossorigin="anonymous"></script>
+
+    <script>
+      let todoList = "$todoList"?"$todoList":[]
+      $('#addPlaneBtn').on('click', (event) =>{
+        $('#addPlanTextarea').val('')
+      })
+      $('#savePlan').on('click',()=>{
+        debugger
+        let plan = $('#addPlanTextarea').val()
+        if(!(todoList instanceof Array)){
+          todoList = []
+        }
+        todoList.push({content:plan,timestamp:Date.now(),id:"TODO_"+Date.now(),state:0})
+        console.log(todoList)
+      })
+    </script>
   </body>
 </html>

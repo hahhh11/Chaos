@@ -8,9 +8,9 @@ import * as path from 'path';
 import { debug } from 'console';
 export function activate(context: vscode.ExtensionContext) {
 	//https://www.zcool.com.cn/work/ZMzIzMjA5MzY=.html
-	let todoRoot = context.extensionPath
-	console.log("插件路径：", todoRoot)
-	const todoDataProvider = new TodoDataProvider(todoRoot)
+	let todoRoot = context.extensionPath;
+	console.log("插件路径：", todoRoot);
+	const todoDataProvider = new TodoDataProvider(todoRoot);
 	vscode.window.registerTreeDataProvider(
 		'Chaos.views.todos',
 		todoDataProvider
@@ -26,11 +26,11 @@ export function activate(context: vscode.ExtensionContext) {
 	addEvent('Chaos.todos.showTodoList', (todoList) => {
 
 		if (!todoPanel) {
-			todoPanel = createTodoWebView(context, 'todoList')
+			todoPanel = createTodoWebView(context, 'todoList');
 		} else {
 			todoPanel.webview.html = getHtmlByName(context, "todoList");
 		}
-	})
+	});
 
 	// addEvent('Chaos.todos.addItem', (content) => {
 
@@ -87,23 +87,18 @@ export function activate(context: vscode.ExtensionContext) {
 	// });
 
 	addEvent('Chaos.todos.removeItem', (itemInfo) => {
-		todoDataProvider.deleteTodo(itemInfo)
+		todoDataProvider.deleteTodo(itemInfo);
 		vscode.window.createTreeView('tree.views.todos', {
 			treeDataProvider: todoDataProvider
 		});
-	})
+	});
 
 	addEvent('Chaos.todos.completeItem', (itemInfo) => {
-		todoDataProvider.completeTodo(itemInfo)
+		todoDataProvider.completeTodo(itemInfo);
 		vscode.window.createTreeView('tree.views.todos', {
 			treeDataProvider: todoDataProvider
 		});
-	})
-
-	addEvent('Chaos.todos.mergeItem', (item) => {
-		// 合并项
-	})
-
+	});
 
 
 	// 添加命令
