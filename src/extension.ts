@@ -5,6 +5,7 @@ import { TodoDataProvider } from './Todo/TodosDataProvider';
 import { TODO } from './Todo/todo'
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 import * as path from 'path';
+import { debug } from 'console';
 export function activate(context: vscode.ExtensionContext) {
 	//https://www.zcool.com.cn/work/ZMzIzMjA5MzY=.html
 	let todoRoot = context.extensionPath
@@ -19,60 +20,71 @@ export function activate(context: vscode.ExtensionContext) {
 		treeDataProvider: todoDataProvider
 	});
 
+	let todoPanel: vscode.WebviewPanel;
+
 	let todoDetailPanel: vscode.WebviewPanel;
-	addEvent('Chaos.todos.addItem', (content) => {
+	addEvent('Chaos.todos.showTodoList', (todoList) => {
 
-		let itemInfo = new TODO("")
-		if (!todoDetailPanel) {
-			todoDetailPanel = createTodoWebView(context, itemInfo)
+		if (!todoPanel) {
+			todoPanel = createTodoWebView(context, 'todoList')
 		} else {
-			todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
+			todoPanel.webview.html = getHtmlByName(context, "todoList");
 		}
-		todoDetailPanel.webview.onDidReceiveMessage(
-			message => {
-				switch (message.command) {
-					case 'saveTodoItem':
-						console.log(message.itemInfo)
-						todoDataProvider.updateTodoJson(message.itemInfo)
-						vscode.window.createTreeView('tree.views.todos', {
-							treeDataProvider: todoDataProvider
-						});
-						break;
-				}
-			},
-			undefined,
-			context.subscriptions
-		);
-	});
+	})
 
-	addEvent('Chaos.todos.clickItem', (itemInfo) => {
-		if (!todoDetailPanel) {
-			todoDetailPanel = createTodoWebView(context, itemInfo)
-		} else {
-			todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
-		}
-		todoDetailPanel.webview.onDidReceiveMessage(
-			message => {
-				switch (message.command) {
-					case 'saveTodoItem':
-						console.log(message.itemInfo)
-						todoDataProvider.updateTodoJson(message.itemInfo)
-						vscode.window.createTreeView('tree.views.todos', {
-							treeDataProvider: todoDataProvider
-						});
-						break;
-					case 'deleteTODO':
-						todoDataProvider.deleteTodo(message.itemInfo)
-						vscode.window.createTreeView('tree.views.todos', {
-							treeDataProvider: todoDataProvider
-						});
-						break;
-				}
-			},
-			undefined,
-			context.subscriptions
-		);
-	});
+	// addEvent('Chaos.todos.addItem', (content) => {
+
+	// 	let itemInfo = new TODO("")
+	// 	if (!todoDetailPanel) {
+	// 		todoDetailPanel = createTodoWebView(context, itemInfo)
+	// 	} else {
+	// 		todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
+	// 	}
+	// 	todoDetailPanel.webview.onDidReceiveMessage(
+	// 		message => {
+	// 			switch (message.command) {
+	// 				case 'saveTodoItem':
+	// 					console.log(message.itemInfo)
+	// 					todoDataProvider.updateTodoJson(message.itemInfo)
+	// 					vscode.window.createTreeView('tree.views.todos', {
+	// 						treeDataProvider: todoDataProvider
+	// 					});
+	// 					break;
+	// 			}
+	// 		},
+	// 		undefined,
+	// 		context.subscriptions
+	// 	);
+	// });
+
+	// addEvent('Chaos.todos.clickItem', (itemInfo) => {
+	// 	if (!todoDetailPanel) {
+	// 		todoDetailPanel = createTodoWebView(context, itemInfo)
+	// 	} else {
+	// 		todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
+	// 	}
+	// 	todoDetailPanel.webview.onDidReceiveMessage(
+	// 		message => {
+	// 			switch (message.command) {
+	// 				case 'saveTodoItem':
+	// 					console.log(message.itemInfo)
+	// 					todoDataProvider.updateTodoJson(message.itemInfo)
+	// 					vscode.window.createTreeView('tree.views.todos', {
+	// 						treeDataProvider: todoDataProvider
+	// 					});
+	// 					break;
+	// 				case 'deleteTODO':
+	// 					todoDataProvider.deleteTodo(message.itemInfo)
+	// 					vscode.window.createTreeView('tree.views.todos', {
+	// 						treeDataProvider: todoDataProvider
+	// 					});
+	// 					break;
+	// 			}
+	// 		},
+	// 		undefined,
+	// 		context.subscriptions
+	// 	);
+	// });
 
 	addEvent('Chaos.todos.removeItem', (itemInfo) => {
 		todoDataProvider.deleteTodo(itemInfo)
