@@ -25,6 +25,14 @@
 				"title": "显示代办列表"
 			},
 			{
+				"command": "Chaos.todos.showCompleteList",
+				"title": "显示完成列表"
+			},
+			{
+				"command": "Chaos.todos.showTrash",
+				"title": "显示回收站"
+			},
+			{
 				"command": "Chaos.todos.addItem",
 				"title": "添加Todos",
 				"icon": {
@@ -115,7 +123,5 @@
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12"
 	},
-	"dependencies": {
-		"bootstrap": "^4.5.3"
-	}
+	"dependencies": {}
 }

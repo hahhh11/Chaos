@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>待办项目</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -135,7 +134,7 @@
           margin: 0;
       }
       .todoListContainer {
-        padding:20px 0px;
+        padding:50px 0px;
       }
       .todoList{
         width: 100%;
@@ -163,8 +162,23 @@
         <button id="addPlaneBtn" type="button" class="btn btn-primary btn-newPlan" data-toggle="modal"  data-target="#addPlanePanel"> + 新建计划</button>
       </div>
       <div class="row">
-        <ul id="todoList" class="live numbers todoList hidden">
+        <ul id="todoList" class="live numbers todoList">
+          <li >
+            <div class="row"><div class="col-md-9">
+              <div class="row"><span class="todoContent">item.content</span></div>
+              <div class="row"><span class="createTime">[创建时间：2020.12.18]</span></div>
+            </div>
+            <div class="col-md-3"><i class="fa fa-square-o"></i></div>
+          </li>
+          <li >
+            <div class="row"><div class="col-md-9">
+              <div class="row"><span class="todoContent">item.content</span></div>
+              <div class="row"><span class="createTime">[创建时间：2020.12.18]</span></div>
+            </div>
+            <div class="col-md-3"><i class="fa fa-square-o"></i></div>
+          </li>
         </ul>
+
       </div>
       
       <!-- 新建代表弹窗 -->
@@ -193,78 +207,9 @@
     <script src="../libs/popper.min.js"  crossorigin="anonymous"></script>
     <script src="../libs/bootstrap.min.js" crossorigin="anonymous"></script>
 
-    <script  type="module">
-      const vscode = acquireVsCodeApi()
-      if(!window['todoListArr']){
-        window['todoListArr'] = "$todoList"?"$todoList":[]
-      }
-      $('#addPlaneBtn').on('click', (event) =>{
-        $('#addPlanTextarea').val('')
-      })
-      $('#savePlan').on('click',()=>{
-        $('#addPlanePanel').modal({backdrop: 'static', keyboard: false});
-        let plan = $('#addPlanTextarea').val()
-        if(!plan || plan == ""){
-          
-          return
-        }
-        if(!(window['todoListArr'] instanceof Array)){
-          window['todoListArr'] = []
-        }
-        window['todoListArr'].push({content:plan,timestamp:Date.now(),id:"TODO_"+Date.now(),state:0})
-        console.log(window['todoListArr'])
-        updateItems(window['todoListArr'])
-        //$('#closeNewPlanBtn').click()
-        
-      })
+    <script lang="javascript">
+      
 
-      updateItems(window['todoListArr'])
-
-      function updateItems(arr){
-        if(!arr){
-          return
-        }
-        console.log(window['todoListArr'])
-        if(!(window['todoListArr'] instanceof Array)){
-          window['todoListArr'] = []
-        }
-        console.log('asdfsad',window['todoListArr'])
-        $('#todoList').children().filter("li").remove();
-        window['todoListArr'].map((item)=>{
-          let todoItem = `
-            <li id="${item.id}">
-              <div class="row"><div class="col-md-9">
-                <div class="row"><span class="todoContent">${item.content}</span></div>
-                <div class="row"><span class="createTime">[创建时间：${getTimeFormat(item.timestamp)}]</span></div>
-              </div>
-              <div class="col-md-3">
-                <button class="fa fa-check green" ></button>
-                <button class="fa fa-times red"></button>
-              </div>
-            </li>
-          `
-          console.log(todoItem)
-          $('#todoList').append(todoItem)
-        })
-        vscode.postMessage({
-            command: 'deleteTODO',
-            itemInfo: itemInfo
-        })
-        $('#closeNewPlanBtn').click()
-      }
-
-
-      function getTimeFormat(timestamp) {
-        let time = new Date(timestamp);
-        let year = time.getFullYear();
-        let month = time.getMonth() + 1;
-        let day = time.getDate() < 10 ? "0" + time.getDate() : time.getDate();
-        let hour = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
-        let minute = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
-        let second = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
-
-        return year + "." + month + "." + day + " " + hour + ":" + minute + ":" + second;
-      }
     </script>
   </body>
 </html>

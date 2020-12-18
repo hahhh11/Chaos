@@ -24,14 +24,20 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let todoDetailPanel: vscode.WebviewPanel;
 	addEvent('Chaos.todos.showTodoList', (todoList) => {
-
 		if (!todoPanel) {
-			todoPanel = createTodoWebView(context, 'todoList');
+			todoPanel = createTodoWebView(context, 'todoList', todoList);
 		} else {
-			todoPanel.webview.html = getHtmlByName(context, "todoList");
+			todoPanel.webview.html = getHtmlByName(context, "todoList", todoList);
 		}
 	});
 
+	addEvent('Chaos.todos.showCompleteList', (complete) => {
+		if (!todoPanel) {
+			todoPanel = createTodoWebView(context, 'completeList');
+		} else {
+			todoPanel.webview.html = getHtmlByName(context, "completeList");
+		}
+	});
 	// addEvent('Chaos.todos.addItem', (content) => {
 
 	// 	let itemInfo = new TODO("")

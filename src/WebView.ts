@@ -48,7 +48,7 @@ export function createWebView(
 }
 
 let todoItemId
-export function createTodoWebView(context: ExtensionContext, type: string = 'todoList', title = "TODO详情") {
+export function createTodoWebView(context: ExtensionContext, type: string = 'todoList', info?: any, title = "代办项目") {
     // 上面重点讲解了 createWebviewPanel 传递4个参数
     webviewPanel = window.createWebviewPanel(
         'TodoDetail',                          // 标识，随意命名
@@ -62,7 +62,7 @@ export function createTodoWebView(context: ExtensionContext, type: string = 'tod
 
     );
 
-    webviewPanel.webview.html = getHtmlByName(context, type);
+    webviewPanel.webview.html = getHtmlByName(context, type, info);
 
     // onDidDispose: 如果关闭该面板，将 webviewPanel 置 undefined
     webviewPanel.onDidDispose(() => {
@@ -91,10 +91,11 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
             break;
         case "todoList":
             html = fs.readFileSync(resourcePath).toString();
+            console.log(info)
             if (info) {
-                html = html.replace('"$todoList"', JSON.stringify(info));
+                html = html.replace(/"\$todoList"/g, JSON.stringify(info));
             } else {
-                html = html.replace('"$todoList"', JSON.stringify([]));
+                html = html.replace(/"\$todoList"/g, JSON.stringify([]));
             }
             break;
     }
