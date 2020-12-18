@@ -99,31 +99,23 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
         // fs.writeFileSync(this.todosJsonPath, JSON.stringify(buff), 'utf-8');
     }
 
-    public updateTodoJson(todoInfo: TODO) {
-        if (!todoInfo) {
+    public updateTodoJson(info: any, type: string) {
+        if (!info) {
             return
         }
-        // let items = this.getItemsInTodoJson(this.todosJsonPath)
-        // let newTodoList = []
-        // let newItemFlag = true
-        // items.forEach(item => {
-        //     if (item.id === todoInfo.id) {
-        //         newItemFlag = false
-        //         if (item.content !== todoInfo.content) {
-        //             item.content = todoInfo.content;
-        //         }
-        //     }
-        //     let newTodo = new TODO(item.content, item.state, item.id, item.timestamp)
-        //     newTodoList.push(newTodo)
-        // })
-        // if (newItemFlag) {
-        //     let newTodo = new TODO(todoInfo.content, todoInfo.state)
-        //     newTodoList.push(newTodo)
-        // }
-        // let buff = {
-        //     todoList: newTodoList
-        // }
-        // fs.writeFileSync(this.todosJsonPath, JSON.stringify(buff), 'utf-8');
+        let items = this.getItemsInTodoJson(this.todosJsonPath)
+        let buff
+        switch (type) {
+            case "todoList":
+                buff = {
+                    todoList: info,
+                    completeList: items[1].command && items[1].command.arguments ? items[1].command.arguments[0] : [],
+                    trash: items[2].command && items[2].command.arguments ? items[2].command.arguments[0] : []
+                }
+                break
+        }
+
+        fs.writeFileSync(this.todosJsonPath, JSON.stringify(buff), 'utf-8');
     }
 
     private getItemsInTodoJson(todosJsonPath: string): TreeItem[] {

@@ -102,7 +102,7 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
     html = html.replace(/(<link.+?href="|<script.+?src="|<img.+?src=")(.+?)"/g, (m, $1, $2) => {
         return $1 + Uri.file(path.resolve(dirPath, $2)).with({ scheme: 'vscode-resource' }).toString() + '"';
     });
-    console.log(dirPath);
+    // console.log(dirPath);
     console.log(html);
     return html;
 }

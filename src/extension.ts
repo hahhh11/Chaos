@@ -1,3 +1,4 @@
+import { TodoList } from './Todo/TodoList';
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
 import { createWebView, createTodoWebView, getHtmlByName } from './WebView';
@@ -26,9 +27,32 @@ export function activate(context: vscode.ExtensionContext) {
 	addEvent('Chaos.todos.showTodoList', (todoList) => {
 		if (!todoPanel) {
 			todoPanel = createTodoWebView(context, 'todoList', todoList);
+
 		} else {
 			todoPanel.webview.html = getHtmlByName(context, "todoList", todoList);
 		}
+
+		todoPanel.webview.onDidReceiveMessage(
+			message => {
+				switch (message.command) {
+					case 'updateTodoList':
+						console.log(message.todoList)
+						todoDataProvider.updateTodoJson(message.todoList, 'todoList')
+						vscode.window.createTreeView('Chaos.views.todos', {
+							treeDataProvider: todoDataProvider
+						});
+						break;
+					case 'deleteTODO':
+						todoDataProvider.deleteTodo(message.itemInfo)
+						vscode.window.createTreeView('tree.views.todos', {
+							treeDataProvider: todoDataProvider
+						});
+						break;
+				}
+			},
+			undefined,
+			context.subscriptions
+		);
 	});
 
 	addEvent('Chaos.todos.showCompleteList', (complete) => {

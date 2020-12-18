@@ -140,9 +140,13 @@
       .todoList{
         width: 100%;
       }
+      #todoList{
+        height:70%;
+        overflow-y: auto;
+      }
       .todoList-MainTitle{
         padding:0 0 0 20px;
-        font-size: 60px;
+        font-size: 55px;
         margin: 0;
         color: #888;
         font-family: Arial, Helvetica, sans-serif;
@@ -159,7 +163,7 @@
   <body>
     <div class="container todoListContainer">
       <div class="row" style="display: block;">
-        <span class="todoList-MainTitle">待办：</span>
+        <!-- <span class="todoList-MainTitle">待办：</span> -->
         <button id="addPlaneBtn" type="button" class="btn btn-primary btn-newPlan" data-toggle="modal"  data-target="#addPlanePanel"> + 新建计划</button>
       </div>
       <div class="row">
@@ -247,8 +251,8 @@
           $('#todoList').append(todoItem)
         })
         vscode.postMessage({
-            command: 'deleteTODO',
-            itemInfo: itemInfo
+            command: 'updateTodoList',
+            todoList: todoListArr
         })
         $('#closeNewPlanBtn').click()
       }
