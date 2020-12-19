@@ -126,7 +126,7 @@
       }
 
       .btn-newPlan{
-        padding: 10px 35px;
+        padding: 10px 25px;
         font-size: 14px;
       }
 
@@ -164,15 +164,15 @@
     <div class="container todoListContainer">
       <div class="row" style="display: block;">
         <!-- <span class="todoList-MainTitle">待办：</span> -->
-        <button id="addPlaneBtn" type="button" class="btn btn-primary btn-newPlan" data-toggle="modal"  data-target="#addPlanePanel"> + 新建计划</button>
+        <button id="addPlaneBtn" type="button" class="btn btn-primary btn-newPlan" data-toggle="modal"  data-target="#addPlanPanel"> + 新建计划</button>
       </div>
       <div class="row">
         <ul id="todoList" class="live numbers todoList hidden">
         </ul>
       </div>
       
-      <!-- 新建代表弹窗 -->
-      <div class="modal fade" id="addPlanePanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- 新建代办计划弹窗 -->
+      <div class="modal fade" id="addPlanPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content wrapper">
             <form>
@@ -183,8 +183,28 @@
                   <label>添加一个新计划：</label>
               </div>
               <div class="btn-box">
-                  <button id="savePlan" type="submit" class="btn btn-primary" >确定</button>
-                  <button id="closeNewPlanBtn" type="submit" class="btn btn-danger" data-dismiss="modal">取消</button>
+                  <button id="savePlan" class="btn btn-primary" >确定</button>
+                  <button id="closePlanBtn" class="btn btn-danger" data-dismiss="modal">取消</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 显示待办详情弹窗 -->
+      <div class="modal fade" id="showPlanDetailPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content wrapper">
+            <form>
+              <div class="group">
+                  <textarea id="showPlanTextarea" type="textarea" rows="8" required="required"></textarea>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>计划详情：</label>
+              </div>
+              <div class="btn-box">
+                  <button id="saveNewPlan" class="btn btn-primary" >保存</button>
+                  <button id="closeNewPlanBtn" class="btn btn-danger" data-dismiss="modal">关闭</button>
               </div>
             </form>
           </div>
@@ -221,9 +241,36 @@
         //$('#closeNewPlanBtn').click()
         
       })
+      // 保存编辑过的TODO
+      $('#saveNewPlan').on('click',()=>{
+        $('#showPlaneDetailPanel').modal({backdrop: 'static', keyboard: false});
+        let plan = $('#showPlanTextarea').val()
+        if(!plan || plan == ""){
+          return
+        }
+        if(!(window['todoListArr'] instanceof Array)){
+          window['todoListArr'] = []
+        }
+        let flag = false
+        window['todoListArr'].map(item=>{
+          if(item.id == window.currDetailId){
+            flag = true
+            item.content = plan
+          }
+        })
+        if(!flag){
+          window['todoListArr'].push({content:plan,timestamp:Date.now(),id:"TODO_"+Date.now(),state:0})
+        }        
+        updateItems(window['todoListArr'])
+        
+        $('#closeNewPlanBtn').click()
+        
+      })
+      
 
       updateItems(window['todoListArr'])
-
+      
+      
       function updateItems(arr){
         if(!arr){
           return
@@ -236,7 +283,7 @@
         $('#todoList').children().filter("li").remove();
         window['todoListArr'].map((item)=>{
           let todoItem = `
-            <li id="${item.id}">
+            <li id="${item.id}" onclick="showDetailPanel('${item.id}')">
               <div class="row"><div class="col-md-9">
                 <div class="row"><span class="todoContent">${item.content}</span></div>
                 <div class="row"><span class="createTime">[创建时间：${getTimeFormat(item.timestamp)}]</span></div>
@@ -249,12 +296,23 @@
           `
           console.log(todoItem)
           $('#todoList').append(todoItem)
+
         })
         vscode.postMessage({
             command: 'updateTodoList',
             todoList: todoListArr
         })
         $('#closeNewPlanBtn').click()
+      }
+
+      window.showDetailPanel = function (id){
+        window['todoListArr'].map(item=>{
+          if(item.id == id){
+            window.currDetailId = id
+            $('#showPlanTextarea').val(item.content)
+            $('#showPlanDetailPanel').modal('show');
+          }
+        })
       }
 
 

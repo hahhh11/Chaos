@@ -57,6 +57,7 @@
 
 .live.numbers {
   counter-reset: xxx 0;
+  padding-left: 40px;
 }
 .live.numbers > li::before {
   content: counter(xxx,decimal) ".";
@@ -64,13 +65,14 @@
   font-family: 'Roboto Condensed';
   font-size: 23px;
   opacity: .5;
+  left:-15px;
   line-height: 1.4;
   -webkit-transition: .5s;
           transition: .5s;
 }
 .live.numbers > li:hover:before {
   opacity: 1;
-  left: -10px;
+  left: -25px;
   -webkit-transform: none;
       -ms-transform: none;
           transform: none;
