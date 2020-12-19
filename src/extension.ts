@@ -24,20 +24,20 @@ export function activate(context: vscode.ExtensionContext) {
 	let todoPanel: vscode.WebviewPanel;
 
 	let todoDetailPanel: vscode.WebviewPanel;
-	addEvent('Chaos.todos.showTodoList', (todoList) => {
+	addEvent('Chaos.todos.showTodoList', (todoJson) => {
 		if (!todoPanel) {
-			todoPanel = createTodoWebView(context, 'todoList', todoList);
+			todoPanel = createTodoWebView(context, 'todoList', todoJson);
 
 		} else {
-			todoPanel.webview.html = getHtmlByName(context, "todoList", todoList);
+			todoPanel.webview.html = getHtmlByName(context, "todoList", todoJson);
 		}
 
 		todoPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
 					case 'updateTodoList':
-						console.log(message.todoList)
-						todoDataProvider.updateTodoJson(message.todoList, 'todoList')
+						console.log(message.todoJson)
+						todoDataProvider.updateTodoJson(message.todoJson, 'todoList')
 						vscode.window.createTreeView('Chaos.views.todos', {
 							treeDataProvider: todoDataProvider
 						});
@@ -55,66 +55,13 @@ export function activate(context: vscode.ExtensionContext) {
 		);
 	});
 
-	addEvent('Chaos.todos.showCompleteList', (complete) => {
+	addEvent('Chaos.todos.showCompleteList', (todoJson) => {
 		if (!todoPanel) {
-			todoPanel = createTodoWebView(context, 'completeList');
+			todoPanel = createTodoWebView(context, 'completeList', todoJson);
 		} else {
-			todoPanel.webview.html = getHtmlByName(context, "completeList");
+			todoPanel.webview.html = getHtmlByName(context, "completeList", todoJson);
 		}
 	});
-	// addEvent('Chaos.todos.addItem', (content) => {
-
-	// 	let itemInfo = new TODO("")
-	// 	if (!todoDetailPanel) {
-	// 		todoDetailPanel = createTodoWebView(context, itemInfo)
-	// 	} else {
-	// 		todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
-	// 	}
-	// 	todoDetailPanel.webview.onDidReceiveMessage(
-	// 		message => {
-	// 			switch (message.command) {
-	// 				case 'saveTodoItem':
-	// 					console.log(message.itemInfo)
-	// 					todoDataProvider.updateTodoJson(message.itemInfo)
-	// 					vscode.window.createTreeView('tree.views.todos', {
-	// 						treeDataProvider: todoDataProvider
-	// 					});
-	// 					break;
-	// 			}
-	// 		},
-	// 		undefined,
-	// 		context.subscriptions
-	// 	);
-	// });
-
-	// addEvent('Chaos.todos.clickItem', (itemInfo) => {
-	// 	if (!todoDetailPanel) {
-	// 		todoDetailPanel = createTodoWebView(context, itemInfo)
-	// 	} else {
-	// 		todoDetailPanel.webview.html = getHtmlByName(context, "editTodo", itemInfo);
-	// 	}
-	// 	todoDetailPanel.webview.onDidReceiveMessage(
-	// 		message => {
-	// 			switch (message.command) {
-	// 				case 'saveTodoItem':
-	// 					console.log(message.itemInfo)
-	// 					todoDataProvider.updateTodoJson(message.itemInfo)
-	// 					vscode.window.createTreeView('tree.views.todos', {
-	// 						treeDataProvider: todoDataProvider
-	// 					});
-	// 					break;
-	// 				case 'deleteTODO':
-	// 					todoDataProvider.deleteTodo(message.itemInfo)
-	// 					vscode.window.createTreeView('tree.views.todos', {
-	// 						treeDataProvider: todoDataProvider
-	// 					});
-	// 					break;
-	// 			}
-	// 		},
-	// 		undefined,
-	// 		context.subscriptions
-	// 	);
-	// });
 
 	addEvent('Chaos.todos.removeItem', (itemInfo) => {
 		todoDataProvider.deleteTodo(itemInfo);

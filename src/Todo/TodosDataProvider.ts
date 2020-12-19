@@ -103,15 +103,11 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
         if (!info) {
             return
         }
-        let items = this.getItemsInTodoJson(this.todosJsonPath)
+        // let items = this.getItemsInTodoJson(this.todosJsonPath)
         let buff
         switch (type) {
             case "todoList":
-                buff = {
-                    todoList: info,
-                    completeList: items[1].command && items[1].command.arguments ? items[1].command.arguments[0] : [],
-                    trash: items[2].command && items[2].command.arguments ? items[2].command.arguments[0] : []
-                }
+                buff = info
                 break
         }
 
@@ -123,15 +119,17 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
             const todoJson = fs.readFileSync(todosJsonPath, 'utf-8');
             let _todoJson = JSON.parse(todoJson);
             //@ts-ignore
-            console.log(todoJson, _todoJson['todoList']);
-            let todoList = new TodoList(_todoJson['todoList'])
-            let completeList = new CompleteList(_todoJson['completeList'])
-            let trash = new Trash(_todoJson['trash'])
+
+            console.log(todoJson, _todoJson);
+            let todoList = new TodoList(_todoJson)
+            let completeList = new CompleteList(_todoJson)
+            let trash = new Trash(_todoJson)
             return [todoList, completeList, trash];
         } else {
-            let todoList = new TodoList([])
-            let completeList = new CompleteList([])
-            let trash = new Trash([])
+            let n = { todoList: [], completeList: [], trash: [] }
+            let todoList = new TodoList(n)
+            let completeList = new CompleteList(n)
+            let trash = new Trash(n)
             return [todoList, completeList, trash];
         }
     }

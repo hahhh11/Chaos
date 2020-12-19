@@ -93,9 +93,9 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
             html = fs.readFileSync(resourcePath).toString();
             console.log(info)
             if (info) {
-                html = html.replace(/"\$todoList"/g, JSON.stringify(info));
+                html = html.replace(/"\$todoJson"/g, JSON.stringify(info));
             } else {
-                html = html.replace(/"\$todoList"/g, JSON.stringify([]));
+                html = html.replace(/"\$todoJson"/g, JSON.stringify({ todoList: [], completeList: [], trash: [] }));
             }
             break;
     }

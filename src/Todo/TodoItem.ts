@@ -6,7 +6,7 @@ import { TodoState } from './TodoState';
 const TODOSTATE_ICON_MAP = new Map<string, string>([
     [TodoState.todo + '', 'todoIcon.svg'],
     [TodoState.complete + '', 'complete.svg'],
-    [TodoState.cancel + '', 'pig3.svg']
+    [TodoState.cancel + '', 'trash.svg']
 ]);
 
 

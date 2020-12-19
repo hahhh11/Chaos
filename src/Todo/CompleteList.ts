@@ -1,14 +1,15 @@
+
 import { TreeItem } from 'vscode';
 export class CompleteList extends TreeItem {
-    constructor(completeList: any[]) {
+    constructor(todoJson: any) {
         super('')
-
-        this.label = `已完成  [${completeList.length}]`
+        todoJson.completeList = todoJson.completeList ? todoJson.completeList : []
+        this.label = `已完成  [${todoJson.completeList.length}]`
 
         this.command = {
             title: '点击查看详情',
             command: "Chaos.todos.showCompleteList",
-            arguments: [completeList]
+            arguments: [todoJson]
         };
     }
 }
