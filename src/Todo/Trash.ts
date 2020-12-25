@@ -6,7 +6,7 @@ export class Trash extends TreeItem {
         this.label = `回收站  [${todoJson.trash.length}]`
         this.command = {
             title: '点击查看详情',
-            command: "Chaos.todos.showTodoList",
+            command: "Chaos.todos.showTrash",
             arguments: [todoJson]
         };
     }

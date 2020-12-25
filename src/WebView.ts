@@ -62,14 +62,31 @@ export function createTodoWebView(context: ExtensionContext, type: string = 'tod
 
     );
 
-    webviewPanel.webview.html = getHtmlByName(context, type, info);
+    webviewPanel.title = getTitleByName(type)
 
+    webviewPanel.webview.html = getHtmlByName(context, type, info);
     // onDidDispose: 如果关闭该面板，将 webviewPanel 置 undefined
     webviewPanel.onDidDispose(() => {
         webviewPanel = undefined;
     });
 
     return webviewPanel;
+}
+
+export function getTitleByName(name: string) {
+    let title = "待办项目"
+    switch (name) {
+        case "todoList":
+            title = "待办项目"
+            break
+        case "completeList":
+            title = "已完成"
+            break
+        case "trash":
+            title = "回收站"
+            break
+    }
+    return title
 }
 
 // 这个方法没什么了，就是一个 最简单的嵌入 iframe 的 html 页面
@@ -90,6 +107,24 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
             }
             break;
         case "todoList":
+            html = fs.readFileSync(resourcePath).toString();
+            console.log(info)
+            if (info) {
+                html = html.replace(/"\$todoJson"/g, JSON.stringify(info));
+            } else {
+                html = html.replace(/"\$todoJson"/g, JSON.stringify({ todoList: [], completeList: [], trash: [] }));
+            }
+            break;
+        case "completeList":
+            html = fs.readFileSync(resourcePath).toString();
+            console.log(info)
+            if (info) {
+                html = html.replace(/"\$todoJson"/g, JSON.stringify(info));
+            } else {
+                html = html.replace(/"\$todoJson"/g, JSON.stringify({ todoList: [], completeList: [], trash: [] }));
+            }
+            break;
+        case "trash":
             html = fs.readFileSync(resourcePath).toString();
             console.log(info)
             if (info) {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>待办项目</title>
+    <title>回收站</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -135,7 +135,7 @@
           margin: 0;
       }
       
-      .todoListContainer {
+      .trashContainer {
         padding:20px 0px;
       }
       .todoList{
@@ -166,13 +166,9 @@
     </style>
   </head>
   <body>
-    <div class="container todoListContainer">
-      <div class="row" style="display: block;">
-        <!-- <span class="todoList-MainTitle">待办：</span> -->
-        <button id="addPlaneBtn" type="button" class="btn btn-primary btn-newPlan" data-toggle="modal"  data-target="#addPlanPanel"> + 新建待办</button>
-      </div>
+    <div class="container trashContainer">
       <div class="row">
-        <ul id="todoList" class="live numbers todoList hidden">
+        <ul id="todoList" class="live numbers trash hidden">
         </ul>
       </div>
       

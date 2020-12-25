@@ -44,7 +44,7 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
                             "timestamp": Date.now(),
                             "content": "TODO示例-欢迎使用Chaos",
                             "state": TodoState.todo,
-                            "id": 0
+                            "id": "TODO_" + Date.now()
                         }
                     ],
                     "completeList": [],

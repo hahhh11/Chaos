@@ -1,7 +1,7 @@
 import { TodoList } from './Todo/TodoList';
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
-import { createWebView, createTodoWebView, getHtmlByName } from './WebView';
+import { createWebView, createTodoWebView, getHtmlByName, getTitleByName } from './WebView';
 import { TodoDataProvider } from './Todo/TodosDataProvider';
 import { TODO } from './Todo/todo'
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
@@ -27,8 +27,8 @@ export function activate(context: vscode.ExtensionContext) {
 	addEvent('Chaos.todos.showTodoList', (todoJson) => {
 		if (!todoPanel) {
 			todoPanel = createTodoWebView(context, 'todoList', todoJson);
-
 		} else {
+			todoPanel.title = getTitleByName('todoList')
 			todoPanel.webview.html = getHtmlByName(context, "todoList", todoJson);
 		}
 
@@ -42,15 +42,18 @@ export function activate(context: vscode.ExtensionContext) {
 							treeDataProvider: todoDataProvider
 						});
 						break;
-					case 'deleteTODO':
-						todoDataProvider.deleteTodo(message.itemInfo)
-						vscode.window.createTreeView('tree.views.todos', {
-							treeDataProvider: todoDataProvider
-						});
-						break;
 				}
 			},
 			undefined,
+			context.subscriptions
+		);
+		todoPanel.onDidDispose(
+			() => {
+				// When the panel is closed, cancel any future updates to the webview content
+				//@ts-ignore
+				todoPanel = undefined
+			},
+			null,
 			context.subscriptions
 		);
 	});
@@ -59,8 +62,53 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!todoPanel) {
 			todoPanel = createTodoWebView(context, 'completeList', todoJson);
 		} else {
+
+			todoPanel.title = getTitleByName('completeList')
 			todoPanel.webview.html = getHtmlByName(context, "completeList", todoJson);
 		}
+		todoPanel.onDidDispose(
+			() => {
+				// When the panel is closed, cancel any future updates to the webview content
+				//@ts-ignore
+				todoPanel = undefined
+			},
+			null,
+			context.subscriptions
+		);
+	});
+
+	addEvent('Chaos.todos.showTrash', (todoJson) => {
+		if (!todoPanel) {
+			todoPanel = createTodoWebView(context, 'trash', todoJson);
+		} else {
+
+			todoPanel.title = getTitleByName('trash')
+			todoPanel.webview.html = getHtmlByName(context, "trash", todoJson);
+		}
+		todoPanel.webview.onDidReceiveMessage(
+			message => {
+				switch (message.command) {
+					case 'updateTodoList':
+						console.log(message.todoJson)
+						todoDataProvider.updateTodoJson(message.todoJson, 'todoList')
+						vscode.window.createTreeView('Chaos.views.todos', {
+							treeDataProvider: todoDataProvider
+						});
+						break;
+				}
+			},
+			undefined,
+			context.subscriptions
+		);
+		todoPanel.onDidDispose(
+			() => {
+				// When the panel is closed, cancel any future updates to the webview content
+				//@ts-ignore
+				todoPanel = undefined
+			},
+			null,
+			context.subscriptions
+		);
 	});
 
 	addEvent('Chaos.todos.removeItem', (itemInfo) => {
