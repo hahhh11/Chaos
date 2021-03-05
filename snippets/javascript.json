@@ -1,0 +1,25 @@
+{
+    "forof循环": {
+        "prefix": "forof",
+        "body": [
+            "for (const ${2:item} of ${1:array}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "for循环"
+    },
+    "consolelog": {
+        "prefix": "dayin",
+        "body": [
+            "console.log(${1})"
+        ],
+        "description": "打印"
+    },
+    "custom_xxxxx": {
+        "prefix": "cl",
+        "body": [
+            "console.log(${1})"
+        ],
+        "description": "打印"
+    }
+}

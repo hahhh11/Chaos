@@ -47,6 +47,32 @@ export function createWebView(
     return webviewPanel;
 }
 
+export function createSnippetsWebView(context: ExtensionContext, type: string = 'commonSnippetsList', info?: any, title = "代码片段管理") {
+    // 上面重点讲解了 createWebviewPanel 传递4个参数
+    webviewPanel = window.createWebviewPanel(
+        'commonSnippetsList',                          // 标识，随意命名
+        title,                              // 面板标题
+        ViewColumn.One,                         // 展示在哪个面板上
+        {
+            retainContextWhenHidden: true,  // 控制是否保持webview面板的内容（iframe），即使面板不再可见。
+            enableScripts: true,             // 下面的 html 页可以使用 Scripts
+            localResourceRoots: [Uri.file(context.extensionPath)],// 指定允许加载的本地资源的根目录
+        }
+
+    );
+
+    webviewPanel.title = getTitleByName(type)
+
+    webviewPanel.webview.html = getHtmlByName(context, type, info);
+    // onDidDispose: 如果关闭该面板，将 webviewPanel 置 undefined
+    webviewPanel.onDidDispose(() => {
+        webviewPanel = undefined;
+    });
+
+    return webviewPanel;
+}
+
+
 let todoItemId
 export function createTodoWebView(context: ExtensionContext, type: string = 'todoList', info?: any, title = "代办项目") {
     // 上面重点讲解了 createWebviewPanel 传递4个参数
@@ -76,6 +102,12 @@ export function createTodoWebView(context: ExtensionContext, type: string = 'tod
 export function getTitleByName(name: string) {
     let title = "待办项目"
     switch (name) {
+        case "commonSnippetsList":
+            title = "通用代码片段"
+            break
+        case "customSnippetsList":
+            title = "自定义代码片段"
+            break
         case "todoList":
             title = "待办项目"
             break
@@ -96,6 +128,36 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
     const dirPath = path.dirname(resourcePath);
     let html = "";
     switch (name) {
+        case "snippetsManagement":
+            // 代码片段管理
+            html = fs.readFileSync(resourcePath).toString();
+            // console.log(info)
+            if (info) {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify(info));
+            } else {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify({}));
+            }
+            break;
+        case "commonSnippetsList":
+            // 通用代码片段列表
+            html = fs.readFileSync(resourcePath).toString();
+            // console.log(info)
+            if (info) {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify(info));
+            } else {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify({}));
+            }
+            break;
+        case "customSnippetsList":
+            // 自定义代码片段列表
+            html = fs.readFileSync(resourcePath).toString();
+            // console.log(info)
+            if (info) {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify(info));
+            } else {
+                html = html.replace(/"\$snippetsJson"/g, JSON.stringify({}));
+            }
+            break;
         case "editTodo":
             html = fs.readFileSync(resourcePath).toString();
             if (info) {

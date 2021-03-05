@@ -1,0 +1,18 @@
+{
+    "forof循环": {
+        "prefix": "forof",
+        "body": [
+            "for (const ${2:item} of ${1:array}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "for循环"
+    },
+    "Print to console": {
+        "prefix": "clog",
+        "body": [
+            "console.log(${1})"
+        ],
+        "description": "打印"
+    }
+}
