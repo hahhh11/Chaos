@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>代码片段管理</title>
+    <title>自定义代码片段列表</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -144,8 +144,6 @@
             overflow: hidden;
         }
 
-
-
         .snippetsTabs {
             width: 100%;
             height: 80vh;
@@ -185,25 +183,40 @@
 
         .snippetsContent {
             width: 100%;
-            height: 80vh;
-            top: 10vh;
             position: absolute;
             padding: 20px 30px;
             color: #fff;
         }
 
         .snippetsContainer .snippetsList {
-            height: 65vh;
+            height: 90vh;
             overflow-y: auto;
         }
 
         .snippetsItem {
-            height: 203px;
+            height: 230px;
+            max-width: 200px;
             min-width: 150px;
             background: #f6f6f6;
             padding: 5px;
             border-radius: 5px;
             margin: 10px;
+        }
+
+        .addsnippet {
+            background: transparent;
+            border: 2px dashed #fff;
+            align-items: center;
+            display: flex;
+        }
+
+        .addsnippet:hover {
+            cursor: pointer;
+        }
+
+        .addsnippet img {
+            width: 50%;
+            margin: auto;
         }
 
         .snippetsItem .thumbnail {
@@ -228,9 +241,6 @@
         .spImg:hover~.snippetDescribe {
             display: block;
         }
-
-
-
 
         .snippetsItem .thumbnail {
             text-align: center;
@@ -273,18 +283,7 @@
 <body>
     <div class="container snippetsContainer">
         <div class="row">
-            <div class="col-sm-2 ">
-                <!--标签-->
-                <ul class="nav snippetsTabs" role="tablist">
-                    <li class="active">
-                        <a href="#tab-common" role="tab" data-toggle="tab">通用片段</a>
-                    </li>
-                    <li>
-                        <a href="#tab-custom" role="tab" data-toggle="tab">自定义片段</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-10">
+            <div class="col-sm-12">
                 <!--标签的内容-->
                 <div class="tab-content snippetsContent">
                     <div class="tab-pane active" id="tab-common">
@@ -324,7 +323,7 @@
             </div>
         </div>
         <!-- 显示待办详情弹窗 -->
-        <div class="modal fade" id="showPlanDetailPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="addPlanDetailPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content wrapper">
@@ -378,7 +377,11 @@
 
       console.log(customSnippetsKeys);
       console.log(commonSnippetsKeys);
-
+      let addBtn = 
+      `<div click="addSnippet()" class="col-sm-2 snippetsItem addsnippet">
+            <img src="../../assets/imgs/add.png" />
+      </div>`
+      $('.commonSnippetsList').append(addBtn)
       if(commonSnippetsKeys?.length>0){
         commonSnippetsKeys.map((sp)=>{
             console.log(sp)

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>代码片段管理</title>
+    <title>通用代码片段列表</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -273,35 +273,24 @@
 <body>
     <div class="container snippetsContainer">
         <div class="row">
-            <div class="col-sm-2 ">
-                <!--标签-->
-                <ul class="nav snippetsTabs" role="tablist">
-                    <li class="active">
-                        <a href="#tab-common" role="tab" data-toggle="tab">通用片段</a>
-                    </li>
-                    <li>
-                        <a href="#tab-custom" role="tab" data-toggle="tab">自定义片段</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-10">
-                <!--标签的内容-->
-                <div class="tab-content snippetsContent">
-                    <div class="tab-pane active" id="tab-common">
-                        <h3>通用片段</h3>
-                        <p>由插件提供的通用代码片段</p>
-                        <div class="row snippetsList commonSnippetsList">
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="tab-custom">
-                        <h3>自定义片段</h3>
-                        <p>用户自定义代码片段</p>
-                        <div class="row snippetsList customSnippetsList">
 
-                        </div>
+            <!--标签的内容-->
+            <div class="tab-content snippetsContent">
+                <div class="tab-pane active" id="tab-common">
+                    <h3>通用片段</h3>
+                    <p>由插件提供的通用代码片段</p>
+                    <div class="row snippetsList commonSnippetsList">
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab-custom">
+                    <h3>自定义片段</h3>
+                    <p>用户自定义代码片段</p>
+                    <div class="row snippetsList customSnippetsList">
+
                     </div>
                 </div>
             </div>
+
         </div>
         <!-- 新建待办弹窗 -->
         <div class="modal fade" id="addPlanPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -392,11 +381,8 @@
                     <h6>片段名：${sp.key}</h6>
                     <p>快捷命令：${sp.val.prefix}</p>
                     <div class="row spItemBtns">
-                        <div class="col-sm-6 pd0">
-                            <a onclick="editSnippet('${sp.key}')" class="btn btn-primary" role="button">编辑</a>
-                        </div>
-                        <div class="col-sm-6 pd0">
-                            <a onclick="deleteSnippet('${sp.key}')" class="btn btn-danger" role="button">删除</a>
+                        <div class="col-sm-12 pd0">
+                            <a onclick="editSnippet('${sp.key}')" class="btn btn-primary" role="button">查看</a>
                         </div>
                     </div>
                     <div class="snippetDescribe">
