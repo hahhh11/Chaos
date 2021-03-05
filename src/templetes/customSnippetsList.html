@@ -203,18 +203,18 @@
             margin: 10px;
         }
 
-        .addsnippet {
+        .addSnippet {
             background: transparent;
             border: 2px dashed #fff;
             align-items: center;
             display: flex;
         }
 
-        .addsnippet:hover {
+        .addSnippet:hover {
             cursor: pointer;
         }
 
-        .addsnippet img {
+        .addSnippet img {
             width: 50%;
             margin: auto;
         }
@@ -323,16 +323,17 @@
             </div>
         </div>
         <!-- 显示待办详情弹窗 -->
-        <div class="modal fade" id="addPlanDetailPanel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="addCustomSnippetPanel" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content wrapper">
                     <form>
                         <div class="group">
+                            <input id="" type="text" placeholder="名称" />
                             <textarea id="showPlanTextarea" type="textarea" rows="8" required="required"></textarea>
                             <span class="highlight"></span>
                             <span class="bar"></span>
-                            <label>待办详情：</label>
+                            <label>新增代码片段：</label>
                         </div>
                         <div class="btn-box">
                             <button id="saveNewPlan" class="btn btn-primary">保存</button>
@@ -363,26 +364,28 @@
             window.snippetsJson = "$snippetsJson"?"$snippetsJson":{}
             
         }
-      let snippetsKeys = Object.keys(window.snippetsJson)
-      console.log(snippetsKeys)
-      let customSnippetsKeys = []
-      let commonSnippetsKeys = []
-      snippetsKeys.map(snippetKey=>{
-          if(snippetKey.split("custom_").length > 1){
+        let snippetsKeys = Object.keys(window.snippetsJson)
+        console.log(snippetsKeys)
+        let customSnippetsKeys = []
+        let commonSnippetsKeys = []
+        snippetsKeys.map(snippetKey=>{
+            if(snippetKey.split("custom_").length > 1){
             customSnippetsKeys.push({key:snippetKey,val:window.snippetsJson[snippetKey]})
-          }else{
+            }else{
             commonSnippetsKeys.push({key:snippetKey,val:window.snippetsJson[snippetKey]})
-          }
-      })
+            }
+        })
 
-      console.log(customSnippetsKeys);
-      console.log(commonSnippetsKeys);
-      let addBtn = 
-      `<div click="addSnippet()" class="col-sm-2 snippetsItem addsnippet">
+        console.log(customSnippetsKeys);
+        let addBtn = 
+        `<div id="addSnippet" class="col-sm-2 snippetsItem addSnippet">
             <img src="../../assets/imgs/add.png" />
-      </div>`
-      $('.commonSnippetsList').append(addBtn)
-      if(commonSnippetsKeys?.length>0){
+        </div>`
+        $('.commonSnippetsList').append(addBtn)
+        $('#addSnippet').on('click',()=>{
+            $('#addCustomSnippetPanel').modal({backdrop: 'static', keyboard: false});
+        })
+        if(commonSnippetsKeys?.length>0){
         commonSnippetsKeys.map((sp)=>{
             console.log(sp)
             let sphtml = 
@@ -409,36 +412,36 @@
             </div>`
             $('.commonSnippetsList').append(sphtml)
         })
-      }
+        }
 
-      if(customSnippetsKeys?.length>0){
-      customSnippetsKeys.map((sp)=>{
-      console.log(sp)
-      let sphtml =
-      `<div class="col-sm-2 snippetsItem">
-          <div class="thumbnail">
-              <div class="spImg">
-                  <img src="../../assets/imgs/pice.jpg" width="100px" height="100px" />
-              </div>
+        if(customSnippetsKeys?.length>0){
+        customSnippetsKeys.map((sp)=>{
+        console.log(sp)
+        let sphtml =
+        `<div class="col-sm-2 snippetsItem">
+            <div class="thumbnail">
+                <div class="spImg">
+                    <img src="../../assets/imgs/pice.jpg" width="100px" height="100px" />
+                </div>
 
-              <h6>片段名：${sp.key.split('custom_')[1]}</h6>
-              <p>快捷命令：${sp.val.prefix}</p>
-              <div class="row spItemBtns">
-                  <div class="col-sm-6 pd0">
-                      <a onclick="editSnippet('${sp.key}')" class="btn btn-primary" role="button">编辑</a>
-                  </div>
-                  <div class="col-sm-6 pd0">
-                      <a onclick="deleteSnippet('${sp.key}')" class="btn btn-danger" role="button">删除</a>
-                  </div>
-              </div>
-              <div class="snippetDescribe">
-                  ${sp?.val?.description?sp.val.description:"通用片段描述"}
-              </div>
-          </div>
-      </div>`
-      $('.customSnippetsList').append(sphtml)
-      })
-      }
+                <h6>片段名：${sp.key.split('custom_')[1]}</h6>
+                <p>快捷命令：${sp.val.prefix}</p>
+                <div class="row spItemBtns">
+                    <div class="col-sm-6 pd0">
+                        <a onclick="editSnippet('${sp.key}')" class="btn btn-primary" role="button">编辑</a>
+                    </div>
+                    <div class="col-sm-6 pd0">
+                        <a onclick="deleteSnippet('${sp.key}')" class="btn btn-danger" role="button">删除</a>
+                    </div>
+                </div>
+                <div class="snippetDescribe">
+                    ${sp?.val?.description?sp.val.description:"通用片段描述"}
+                </div>
+            </div>
+        </div>`
+        $('.customSnippetsList').append(sphtml)
+        })
+        }
 
      // addcommonsphtml = ``
      //   $('.commonSnippetsList').append(sphtml)
