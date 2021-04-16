@@ -15,7 +15,7 @@ export class SnippetsProvider implements TreeDataProvider<SnippetItem>{
         this.snippetsRoot = process.env.APPDATA + "\\Code\\User\\snippets";
         this.commonSnippetsPath = path.join(this.snippetsRoot, 'chaos_common.code-snippets');
         this.customSnippetsPath = path.join(this.snippetsRoot, 'chaos_custom.code-snippets');
-
+        console.log("路径：", this.customSnippetsPath)
     }
 
     onDidChangeTreeData?: Event<void | TreeItem | null | undefined> | undefined;
@@ -67,7 +67,6 @@ export class SnippetsProvider implements TreeDataProvider<SnippetItem>{
         }
 
     }
-
 
 
     public updateSnippetJson(info: any, type: string) {

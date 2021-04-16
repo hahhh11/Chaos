@@ -1,0 +1,848 @@
+(this["webpackJsonpchaos-react-templetes-creator"] = this["webpackJsonpchaos-react-templetes-creator"] || []).push([["main"],{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/pages/CustomSnippetsList/customSnippetsList.less":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src??postcss!./src/pages/CustomSnippetsList/customSnippetsList.less ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "body {\n  margin: 0 !important;\n}\n.snippetsList {\n  background: #333;\n}\n.snippetsList h3 {\n  color: #fff;\n  padding: 2rem 2rem 0;\n  margin: 0;\n  font-size: 2rem;\n}\n.snippetsList .desc {\n  color: #fff;\n  padding: 0 2rem 0;\n}\n.pd0 {\n  padding: 0;\n}\n.table {\n  display: table;\n  width: 10rem;\n  height: 3rem;\n}\n.cell {\n  background-color: black;\n  display: table-cell;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n.list-inline {\n  display: inline-flex;\n  padding: 0 1rem;\n}\n.list-inline li {\n  background: #f6f6f6;\n  list-style-type: none;\n  width: 10rem;\n  border: 1px #000 solid;\n  margin: 0 1rem 1rem;\n  border-radius: 13px;\n}\n.snippetsItem {\n  display: table;\n  width: 100%;\n  height: 200px;\n}\n.snippetsItem div {\n  display: table-row;\n  padding: 0.5rem;\n  margin: 0.5rem;\n}\n.snippetsItem h6,\n.snippetsItem p {\n  margin: 0;\n  padding: 0.2rem 0.5rem;\n}\n.snippetsItem .spImg {\n  display: table-cell;\n  padding: 0.5rem;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n.snippetsItem .spImg:hover ~ .snippetDescribe {\n  display: block;\n}\n.snippetsItem .snippetDescribe {\n  color: #000;\n  font-size: 12px;\n  text-align: left;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 5px;\n  background: #f6f6f6;\n  padding: 10px;\n  display: none;\n}\n.snippetsItem .spItemBtns {\n  width: 100%;\n  display: flex;\n  border-radius: 3px;\n  padding: 0;\n  margin: 0;\n}\n.snippetsItem .spItemBtns button {\n  margin: 0.3rem 0.4rem;\n  padding: 0.6rem 1.2rem;\n  border-radius: 5px;\n  border: none;\n  color: #fff;\n  font-size: 0.8rem;\n}\n.snippetsItem .spItemBtns .editBtn {\n  background: #1890ff;\n}\n.snippetsItem .spItemBtns .deleteBtn {\n  background: red;\n}\n", "",{"version":3,"sources":["webpack://src/pages/CustomSnippetsList/customSnippetsList.less"],"names":[],"mappings":"AAAA;EACE,oBAAoB;AACtB;AACA;EACE,gBAAgB;AAClB;AACA;EACE,WAAW;EACX,oBAAoB;EACpB,SAAS;EACT,eAAe;AACjB;AACA;EACE,WAAW;EACX,iBAAiB;AACnB;AACA;EACE,UAAU;AACZ;AACA;EACE,cAAc;EACd,YAAY;EACZ,YAAY;AACd;AACA;EACE,uBAAuB;EACvB,mBAAmB;EACnB,WAAW;EACX,YAAY;EACZ,kBAAkB;AACpB;AACA;EACE,oBAAoB;EACpB,eAAe;AACjB;AACA;EACE,mBAAmB;EACnB,qBAAqB;EACrB,YAAY;EACZ,sBAAsB;EACtB,mBAAmB;EACnB,mBAAmB;AACrB;AACA;EACE,cAAc;EACd,WAAW;EACX,aAAa;AACf;AACA;EACE,kBAAkB;EAClB,eAAe;EACf,cAAc;AAChB;AACA;;EAEE,SAAS;EACT,sBAAsB;AACxB;AACA;EACE,mBAAmB;EACnB,eAAe;EACf,WAAW;EACX,YAAY;EACZ,kBAAkB;AACpB;AACA;EACE,cAAc;AAChB;AACA;EACE,WAAW;EACX,eAAe;EACf,gBAAgB;EAChB,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,WAAW;EACX,mBAAmB;EACnB,aAAa;EACb,aAAa;AACf;AACA;EACE,WAAW;EACX,aAAa;EACb,kBAAkB;EAClB,UAAU;EACV,SAAS;AACX;AACA;EACE,qBAAqB;EACrB,sBAAsB;EACtB,kBAAkB;EAClB,YAAY;EACZ,WAAW;EACX,iBAAiB;AACnB;AACA;EACE,mBAAmB;AACrB;AACA;EACE,eAAe;AACjB","sourcesContent":["body {\n  margin: 0 !important;\n}\n.snippetsList {\n  background: #333;\n}\n.snippetsList h3 {\n  color: #fff;\n  padding: 2rem 2rem 0;\n  margin: 0;\n  font-size: 2rem;\n}\n.snippetsList .desc {\n  color: #fff;\n  padding: 0 2rem 0;\n}\n.pd0 {\n  padding: 0;\n}\n.table {\n  display: table;\n  width: 10rem;\n  height: 3rem;\n}\n.cell {\n  background-color: black;\n  display: table-cell;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n.list-inline {\n  display: inline-flex;\n  padding: 0 1rem;\n}\n.list-inline li {\n  background: #f6f6f6;\n  list-style-type: none;\n  width: 10rem;\n  border: 1px #000 solid;\n  margin: 0 1rem 1rem;\n  border-radius: 13px;\n}\n.snippetsItem {\n  display: table;\n  width: 100%;\n  height: 200px;\n}\n.snippetsItem div {\n  display: table-row;\n  padding: 0.5rem;\n  margin: 0.5rem;\n}\n.snippetsItem h6,\n.snippetsItem p {\n  margin: 0;\n  padding: 0.2rem 0.5rem;\n}\n.snippetsItem .spImg {\n  display: table-cell;\n  padding: 0.5rem;\n  width: 100%;\n  height: 100%;\n  text-align: center;\n}\n.snippetsItem .spImg:hover ~ .snippetDescribe {\n  display: block;\n}\n.snippetsItem .snippetDescribe {\n  color: #000;\n  font-size: 12px;\n  text-align: left;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  border: 5px;\n  background: #f6f6f6;\n  padding: 10px;\n  display: none;\n}\n.snippetsItem .spItemBtns {\n  width: 100%;\n  display: flex;\n  border-radius: 3px;\n  padding: 0;\n  margin: 0;\n}\n.snippetsItem .spItemBtns button {\n  margin: 0.3rem 0.4rem;\n  padding: 0.6rem 1.2rem;\n  border-radius: 5px;\n  border: none;\n  color: #fff;\n  font-size: 0.8rem;\n}\n.snippetsItem .spItemBtns .editBtn {\n  background: #1890ff;\n}\n.snippetsItem .spItemBtns .deleteBtn {\n  background: red;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/styles/common.less":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src??postcss!./src/styles/common.less ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, "body {\n  margin: 0;\n}\n", "",{"version":3,"sources":["webpack://src/styles/common.less"],"names":[],"mappings":"AAAA;EACE,SAAS;AACX","sourcesContent":["body {\n  margin: 0;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./src/components/CodeEditor/codeEditor.jsx":
+/*!**************************************************!*\
+  !*** ./src/components/CodeEditor/codeEditor.jsx ***!
+  \**************************************************/
+/*! exports provided: CodeEditor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CodeEditor", function() { return CodeEditor; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_monaco_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-monaco-editor */ "./node_modules/react-monaco-editor/lib/index.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+var _jsxFileName = "D:\\vscode_ext\\chaos-react-templetes-creator\\src\\components\\CodeEditor\\codeEditor.jsx",
+    _s = __webpack_require__.$Refresh$.signature();
+
+
+
+
+const CodeEditor = props => {
+  _s();
+
+  const {
+    currCode
+  } = props;
+  const [theme, setTheme] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('vs-dark');
+  let [code, setCode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(currCode);
+  const options = {
+    selectOnLineNumbers: true,
+    roundedSelection: false,
+    readOnly: false,
+    cursorStyle: "line",
+    automaticLayout: false
+  };
+  let editor;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    console.log("当前代码：", code);
+  }, [code]);
+
+  const onChange = newValue => {
+    code = setCode(newValue);
+  };
+
+  const editorDidMount = _editor => {
+    // eslint-disable-next-line no-console
+    console.log("editorDidMount", _editor, _editor.getValue(), _editor.getModel());
+    editor = _editor;
+    setCode(currCode);
+  };
+
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__["jsxDEV"])("div", {
+    children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__["jsxDEV"])(react_monaco_editor__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      height: "900",
+      language: "javascript",
+      value: code,
+      options: options,
+      onChange: onChange,
+      editorDidMount: editorDidMount,
+      theme: theme
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 36,
+      columnNumber: 13
+    }, undefined)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 35,
+    columnNumber: 9
+  }, undefined);
+};
+
+_s(CodeEditor, "EFmZumnKslkpDqPMljFgtizWwFU=");
+
+_c = CodeEditor;
+
+var _c;
+
+__webpack_require__.$Refresh$.register(_c, "CodeEditor");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/images/pice.jpg":
+/*!*****************************!*\
+  !*** ./src/images/pice.jpg ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("data:image/jpeg;base64,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");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _pages_CustomSnippetsList_customSnippetsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/CustomSnippetsList/customSnippetsList */ "./src/pages/CustomSnippetsList/customSnippetsList.jsx");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+var _jsxFileName = "D:\\vscode_ext\\chaos-react-templetes-creator\\src\\index.js";
+
+
+
+
+window.snippetsJson = {
+  "custom_xxxxx": {
+    "prefix": "cl",
+    "body": ["console.log(${1})", "//dadfasdf", "//asdfasdf"],
+    "description": "打印"
+  },
+  "custom_yyyyy": {
+    "prefix": "cl",
+    "body": ["console.log(${1})"],
+    "description": "打印"
+  },
+  "custom_zzzzz": {
+    "prefix": "cl",
+    "body": ["console.log(${1})"],
+    "description": "打印"
+  }
+};
+
+const App = () => /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__["jsxDEV"])("div", {
+  children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__["jsxDEV"])(_pages_CustomSnippetsList_customSnippetsList__WEBPACK_IMPORTED_MODULE_2__["CustomSnippetsList"], {
+    snippetsJson: window.snippetsJson
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 32,
+    columnNumber: 5
+  }, undefined)
+}, void 0, false, {
+  fileName: _jsxFileName,
+  lineNumber: 31,
+  columnNumber: 3
+}, undefined);
+
+_c = App;
+Object(react_dom__WEBPACK_IMPORTED_MODULE_1__["render"])( /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__["jsxDEV"])(App, {}, void 0, false, {
+  fileName: _jsxFileName,
+  lineNumber: 36,
+  columnNumber: 8
+}, undefined), document.getElementById("root"));
+
+var _c;
+
+__webpack_require__.$Refresh$.register(_c, "App");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/pages/CustomSnippetsList/customSnippetsList.jsx":
+/*!*************************************************************!*\
+  !*** ./src/pages/CustomSnippetsList/customSnippetsList.jsx ***!
+  \*************************************************************/
+/*! exports provided: CustomSnippetsList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(__react_refresh_utils__, __react_refresh_error_overlay__) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomSnippetsList", function() { return CustomSnippetsList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_CodeEditor_codeEditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/CodeEditor/codeEditor */ "./src/components/CodeEditor/codeEditor.jsx");
+/* harmony import */ var _styles_common_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../styles/common.less */ "./src/styles/common.less");
+/* harmony import */ var _styles_common_less__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_common_less__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _customSnippetsList_less__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customSnippetsList.less */ "./src/pages/CustomSnippetsList/customSnippetsList.less");
+/* harmony import */ var _customSnippetsList_less__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_customSnippetsList_less__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _images_pice_jpg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../images/pice.jpg */ "./src/images/pice.jpg");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__);
+__webpack_require__.$Refresh$.runtime = __webpack_require__(/*! ./node_modules/react-refresh/runtime.js */ "./node_modules/react-refresh/runtime.js");
+__webpack_require__.$Refresh$.setup(module.i);
+
+var _jsxFileName = "D:\\vscode_ext\\chaos-react-templetes-creator\\src\\pages\\CustomSnippetsList\\customSnippetsList.jsx",
+    _s = __webpack_require__.$Refresh$.signature();
+
+
+
+
+
+
+
+const CustomSnippetsList = props => {
+  _s();
+
+  let {
+    snippetsJson
+  } = props;
+  let snippetsKeys = snippetsJson ? Object.keys(snippetsJson) : [];
+  let customSnippetsKeys = [];
+  snippetsKeys.map(snippetKey => {
+    if (snippetKey.split("custom_").length > 1) {
+      customSnippetsKeys.push({
+        key: snippetKey,
+        val: snippetsJson[snippetKey]
+      });
+    }
+  });
+  console.log(customSnippetsKeys);
+  const [showEditor, setShowEditor] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const [currCode, setCurrCode] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("//请输入代码片段"); // useEffect(() => {
+  // }, [showEditor])
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {}, [currCode]);
+
+  const editSnippet = key => {
+    var _snippetsJson$key;
+
+    setShowEditor(true);
+
+    if (((_snippetsJson$key = snippetsJson[key]) === null || _snippetsJson$key === void 0 ? void 0 : _snippetsJson$key.body) && snippetsJson[key].body.length > 0) {
+      let allCode = "";
+      snippetsJson[key].body.forEach(code => {
+        allCode += code + "\n";
+      });
+      console.log("code:", allCode);
+      setCurrCode(allCode);
+    } else {
+      setCurrCode("//请输入代码片段");
+    }
+  };
+
+  const deleteSnippet = key => {};
+
+  const listItems = customSnippetsKeys.map((item, idx) => {
+    var _item$val;
+
+    return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("li", {
+      className: "snippetsItem",
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+        className: "spImg ",
+        children: /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("img", {
+          src: _images_pice_jpg__WEBPACK_IMPORTED_MODULE_4__["default"],
+          width: "100px",
+          height: "100px"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 50,
+          columnNumber: 21
+        }, undefined)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 49,
+        columnNumber: 17
+      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+        className: "",
+        children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("h6", {
+          children: ["\u7247\u6BB5\u540D\uFF1A", item.key.split('custom_')[1]]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 53,
+          columnNumber: 21
+        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("p", {
+          children: ["\u5FEB\u6377\u547D\u4EE4\uFF1A", item.val.prefix]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 54,
+          columnNumber: 21
+        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+          className: "spItemBtns",
+          children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("button", {
+            onClick: () => {
+              editSnippet(item.key);
+            },
+            className: "editBtn",
+            children: "\u7F16\u8F91"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 56,
+            columnNumber: 25
+          }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("button", {
+            onClick: () => {
+              deleteSnippet(item.key);
+            },
+            className: "deleteBtn",
+            role: "button",
+            children: "\u5220\u9664"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 57,
+            columnNumber: 25
+          }, undefined)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 55,
+          columnNumber: 21
+        }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+          className: "snippetDescribe",
+          children: (item === null || item === void 0 ? void 0 : (_item$val = item.val) === null || _item$val === void 0 ? void 0 : _item$val.description) ? item.val.description : "通用片段描述"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 59,
+          columnNumber: 21
+        }, undefined)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 52,
+        columnNumber: 17
+      }, undefined)]
+    }, idx, true, {
+      fileName: _jsxFileName,
+      lineNumber: 48,
+      columnNumber: 13
+    }, undefined);
+  });
+  console.log(showEditor);
+  return /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+    className: "snippetsList",
+    children: [!showEditor && customSnippetsKeys.length > 0 && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("div", {
+      children: [/*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("h3", {
+        children: "\u81EA\u5B9A\u4E49\u7247\u6BB5"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 72,
+        columnNumber: 21
+      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("p", {
+        className: "desc",
+        children: "\u7528\u6237\u81EA\u5B9A\u4E49\u4EE3\u7801\u7247\u6BB5"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 73,
+        columnNumber: 21
+      }, undefined), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])("ul", {
+        className: "list-inline",
+        children: listItems
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 74,
+        columnNumber: 21
+      }, undefined)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 71,
+      columnNumber: 17
+    }, undefined), showEditor && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__["jsxDEV"])(_components_CodeEditor_codeEditor__WEBPACK_IMPORTED_MODULE_1__["CodeEditor"], {
+      currCode: currCode
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 77,
+      columnNumber: 28
+    }, undefined)]
+  }, void 0, true, {
+    fileName: _jsxFileName,
+    lineNumber: 69,
+    columnNumber: 9
+  }, undefined);
+};
+
+_s(CustomSnippetsList, "2ybiIgf5YkpDNVO4oaxAjH7jfiw=");
+
+_c = CustomSnippetsList;
+
+var _c;
+
+__webpack_require__.$Refresh$.register(_c, "CustomSnippetsList");
+
+const currentExports = __react_refresh_utils__.getModuleExports(module.i);
+__react_refresh_utils__.registerExportsForReactRefresh(currentExports, module.i);
+
+if (true) {
+  const isHotUpdate = !!module.hot.data;
+  const prevExports = isHotUpdate ? module.hot.data.prevExports : null;
+
+  if (__react_refresh_utils__.isReactRefreshBoundary(currentExports)) {
+    module.hot.dispose(
+      /**
+       * A callback to performs a full refresh if React has unrecoverable errors,
+       * and also caches the to-be-disposed module.
+       * @param {*} data A hot module data object from Webpack HMR.
+       * @returns {void}
+       */
+      function hotDisposeCallback(data) {
+        // We have to mutate the data object to get data registered and cached
+        data.prevExports = currentExports;
+      }
+    );
+    module.hot.accept(
+      /**
+       * An error handler to allow self-recovering behaviours.
+       * @param {Error} error An error occurred during evaluation of a module.
+       * @returns {void}
+       */
+      function hotErrorHandler(error) {
+        if (
+          typeof __react_refresh_error_overlay__ !== 'undefined' &&
+          __react_refresh_error_overlay__
+        ) {
+          __react_refresh_error_overlay__.handleRuntimeError(error);
+        }
+
+        if (typeof __react_refresh_test__ !== 'undefined' && __react_refresh_test__) {
+          if (window.onHotAcceptError) {
+            window.onHotAcceptError(error.message);
+          }
+        }
+
+        __webpack_require__.c[module.i].hot.accept(hotErrorHandler);
+      }
+    );
+
+    if (isHotUpdate) {
+      if (
+        __react_refresh_utils__.isReactRefreshBoundary(prevExports) &&
+        __react_refresh_utils__.shouldInvalidateReactRefreshBoundary(prevExports, currentExports)
+      ) {
+        module.hot.invalidate();
+      } else {
+        __react_refresh_utils__.enqueueUpdate(
+          /**
+           * A function to dismiss the error overlay after performing React refresh.
+           * @returns {void}
+           */
+          function updateCallback() {
+            if (
+              typeof __react_refresh_error_overlay__ !== 'undefined' &&
+              __react_refresh_error_overlay__
+            ) {
+              __react_refresh_error_overlay__.clearRuntimeErrors();
+            }
+          }
+        );
+      }
+    }
+  } else {
+    if (isHotUpdate && __react_refresh_utils__.isReactRefreshBoundary(prevExports)) {
+      module.hot.invalidate();
+    }
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js */ "./node_modules/@pmmmwh/react-refresh-webpack-plugin/lib/runtime/RefreshUtils.js"), __webpack_require__(/*! ./node_modules/react-dev-utils/refreshOverlayInterop.js */ "./node_modules/react-dev-utils/refreshOverlayInterop.js")))
+
+/***/ }),
+
+/***/ "./src/pages/CustomSnippetsList/customSnippetsList.less":
+/*!**************************************************************!*\
+  !*** ./src/pages/CustomSnippetsList/customSnippetsList.less ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../../node_modules/postcss-loader/src??postcss!./customSnippetsList.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/pages/CustomSnippetsList/customSnippetsList.less");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+if (true) {
+  if (!content.locals || module.hot.invalidate) {
+    var isEqualLocals = function isEqualLocals(a, b, isNamedExport) {
+  if (!a && b || a && !b) {
+    return false;
+  }
+
+  var p;
+
+  for (p in a) {
+    if (isNamedExport && p === 'default') {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    if (a[p] !== b[p]) {
+      return false;
+    }
+  }
+
+  for (p in b) {
+    if (isNamedExport && p === 'default') {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    if (!a[p]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+    var oldLocals = content.locals;
+
+    module.hot.accept(
+      /*! !../../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../../node_modules/postcss-loader/src??postcss!./customSnippetsList.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/pages/CustomSnippetsList/customSnippetsList.less",
+      function () {
+        content = __webpack_require__(/*! !../../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../../node_modules/postcss-loader/src??postcss!./customSnippetsList.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/pages/CustomSnippetsList/customSnippetsList.less");
+
+              content = content.__esModule ? content.default : content;
+
+              if (typeof content === 'string') {
+                content = [[module.i, content, '']];
+              }
+
+              if (!isEqualLocals(oldLocals, content.locals)) {
+                module.hot.invalidate();
+
+                return;
+              }
+
+              oldLocals = content.locals;
+
+              update(content);
+      }
+    )
+  }
+
+  module.hot.dispose(function() {
+    update();
+  });
+}
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/styles/common.less":
+/*!********************************!*\
+  !*** ./src/styles/common.less ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(/*! ../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../node_modules/postcss-loader/src??postcss!./common.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/styles/common.less");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+if (true) {
+  if (!content.locals || module.hot.invalidate) {
+    var isEqualLocals = function isEqualLocals(a, b, isNamedExport) {
+  if (!a && b || a && !b) {
+    return false;
+  }
+
+  var p;
+
+  for (p in a) {
+    if (isNamedExport && p === 'default') {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    if (a[p] !== b[p]) {
+      return false;
+    }
+  }
+
+  for (p in b) {
+    if (isNamedExport && p === 'default') {
+      // eslint-disable-next-line no-continue
+      continue;
+    }
+
+    if (!a[p]) {
+      return false;
+    }
+  }
+
+  return true;
+};
+    var oldLocals = content.locals;
+
+    module.hot.accept(
+      /*! !../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../node_modules/postcss-loader/src??postcss!./common.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/styles/common.less",
+      function () {
+        content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--5-oneOf-8-1!../../node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!../../node_modules/postcss-loader/src??postcss!./common.less */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/_less-loader@5.0.0@less-loader/dist/cjs.js?less-loader!./node_modules/postcss-loader/src/index.js?!./src/styles/common.less");
+
+              content = content.__esModule ? content.default : content;
+
+              if (typeof content === 'string') {
+                content = [[module.i, content, '']];
+              }
+
+              if (!isEqualLocals(oldLocals, content.locals)) {
+                module.hot.invalidate();
+
+                return;
+              }
+
+              oldLocals = content.locals;
+
+              update(content);
+      }
+    )
+  }
+
+  module.hot.dispose(function() {
+    update();
+  });
+}
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ 1:
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** multi (webpack)/hot/dev-server.js ./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js ./node_modules/react-dev-utils/webpackHotDevClient.js ./src/index.js ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(/*! D:\vscode_ext\chaos-react-templetes-creator\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! D:\vscode_ext\chaos-react-templetes-creator\node_modules\@pmmmwh\react-refresh-webpack-plugin\client\ReactRefreshEntry.js */"./node_modules/@pmmmwh/react-refresh-webpack-plugin/client/ReactRefreshEntry.js");
+__webpack_require__(/*! D:\vscode_ext\chaos-react-templetes-creator\node_modules\react-dev-utils\webpackHotDevClient.js */"./node_modules/react-dev-utils/webpackHotDevClient.js");
+module.exports = __webpack_require__(/*! D:\vscode_ext\chaos-react-templetes-creator\src\index.js */"./src/index.js");
+
+
+/***/ })
+
+},[[1,"runtime-main","vendors~main"]]]);
+//# sourceMappingURL=main.chunk.js.map

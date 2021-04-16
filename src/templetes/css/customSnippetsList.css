@@ -1,0 +1,269 @@
+*,
+        :before,
+        :after {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #333333;
+        }
+
+        .modal-dialog {
+            max-width: 1200px;
+        }
+
+        .wrapper {
+            background: #333333;
+        }
+
+        form {
+            width: 90%;
+            margin: 45px auto 30px;
+        }
+
+        form h1 {
+            font-size: 3em;
+            font-weight: 300;
+            text-align: center;
+            color: #2196F3;
+        }
+
+        form h5 {
+            text-align: center;
+            text-transform: uppercase;
+            color: #c6c6c6;
+        }
+
+        form hr.sep {
+            background: #2196F3;
+            box-shadow: none;
+            border: none;
+            height: 2px;
+            width: 25%;
+            margin: 50px auto 35px auto;
+        }
+
+        .group {
+            position: relative;
+            margin: 0 0 25px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input,
+        textarea {
+            background: none;
+            color: #c6c6c6;
+            font-size: 18px;
+            padding: 20px 10px 10px 5px;
+            display: block;
+            width: 100%;
+            border: none;
+            border-radius: 0;
+            border-bottom: 1px solid #c6c6c6;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        input:focus~label,
+        input:valid~label,
+        textarea:focus~label,
+        textarea:valid~label {
+            top: -20px;
+            font-size: 20px;
+            color: #2196F3;
+        }
+
+        input:focus~.bar:before,
+        textarea:focus~.bar:before {
+            width: 100%;
+        }
+
+        input[type="password"] {
+            letter-spacing: 0.3em;
+        }
+
+        label {
+            color: #c6c6c6;
+            font-size: 24px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 0px;
+            -webkit-transition: 300ms ease all;
+            transition: 300ms ease all;
+        }
+
+        .bar {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+
+        .bar:before {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 0px;
+            position: absolute;
+            background: #2196F3;
+            -webkit-transition: 300ms ease all;
+            transition: 300ms ease all;
+            left: 0%;
+        }
+
+        .btn-newPlan {
+            padding: 10px 25px;
+            font-size: 14px;
+        }
+
+        .btn-box {
+            text-align: center;
+            margin: 0;
+        }
+
+        .snippetsContainer {
+            height: 100vh;
+            max-width: 100vw;
+            overflow: hidden;
+        }
+
+        .snippetsTabs {
+            width: 100%;
+            height: 80vh;
+            padding: 20px;
+            text-align: center;
+            margin: auto;
+            top: 10vh;
+            position: absolute;
+            background: #333333;
+            border-right: 1px solid #666;
+            border-radius: 0%;
+            color: #eeeeee;
+            box-shadow: none;
+            display: block;
+        }
+
+        .snippetsTabs li {
+            text-align: center;
+            width: 100%;
+            line-height: 40px;
+        }
+
+        .snippetsTabs a {
+            font-size: 24px;
+            font-weight: 100;
+            color: #fff
+        }
+
+        .snippetsTabs a:hover {
+            border-bottom: none;
+            text-decoration: none;
+        }
+
+        .snippetsTabs a:focus {
+            border: none
+        }
+
+        .snippetsContent {
+            width: 100%;
+            position: absolute;
+            padding: 20px 30px;
+            color: #fff;
+        }
+
+        .snippetsContainer .snippetsList {
+            height: 90vh;
+            overflow-y: auto;
+        }
+
+        .snippetsItem {
+            height: 230px;
+            max-width: 200px;
+            min-width: 150px;
+            background: #f6f6f6;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .addSnippet {
+            background: transparent;
+            border: 2px dashed #fff;
+            align-items: center;
+            display: flex;
+        }
+
+        .addSnippet:hover {
+            cursor: pointer;
+        }
+
+        .addSnippet img {
+            width: 50%;
+            margin: auto;
+        }
+
+        .snippetsItem .thumbnail {
+            display: block;
+        }
+
+        .snippetsItem .snippetDescribe {
+            color: #000;
+            font-size: 12px;
+            text-align: left;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border: 5px;
+            background: #f6f6f6;
+            padding: 10px;
+            display: none;
+        }
+
+        .spImg:hover~.snippetDescribe {
+            display: block;
+        }
+
+        .snippetsItem .thumbnail {
+            text-align: center;
+            height: 100%;
+            display: grid;
+        }
+
+        .snippetsItem h6,
+        .snippetsItem p {
+            font-size: 14px;
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        .snippetsItem a {
+            padding: 5px 15px;
+            font-size: 12px;
+        }
+
+        .spItemBtns {
+            position: relative;
+        }
+
+        .pd0 {
+            padding: 0;
+        }
+
+        .createTime {
+            font-size: 14px;
+        }
+
+        .plan-item-btns button {
+            background: border-box;
+            border: none;
+            font-size: large;
+        }

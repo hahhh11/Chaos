@@ -12,6 +12,8 @@ import { createPreviewReact, previewReact } from './preview/PreviewReact';
 export function activate(context: vscode.ExtensionContext) {
 	// let snippetRoot = context.extensionPath;
 	const snippetsProvider = new SnippetsProvider();
+
+
 	vscode.window.registerTreeDataProvider(
 		'Chaos.views.snippets',
 		snippetsProvider
@@ -29,12 +31,9 @@ export function activate(context: vscode.ExtensionContext) {
 		snippetsPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
-					case 'updateTodoList':
-						// console.log(message.todoJson)
-						// snippetsProvider.updateTodoJson(message.todoJson, 'todoList')
-						// vscode.window.createTreeView('Chaos.views.todos', {
-						// 	treeDataProvider: todoDataProvider
-						// });
+					case 'saveSnippets':
+						console.log("保存代码片段")
+						snippetsProvider.updateSnippetJson(JSON.parse(message.snippets), "custom")
 						break;
 				}
 			},
@@ -62,12 +61,9 @@ export function activate(context: vscode.ExtensionContext) {
 		snippetsPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
-					case 'updateTodoList':
-						// console.log(message.todoJson)
-						// snippetsProvider.updateTodoJson(message.todoJson, 'todoList')
-						// vscode.window.createTreeView('Chaos.views.todos', {
-						// 	treeDataProvider: todoDataProvider
-						// });
+					case 'saveSnippets':
+						console.log("保存代码片段")
+						snippetsProvider.updateSnippetJson(JSON.parse(message.snippets), "custom")
 						break;
 				}
 			},

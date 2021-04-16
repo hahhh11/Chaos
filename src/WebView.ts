@@ -150,7 +150,8 @@ export function getHtmlByName(context: ExtensionContext, name: string, info?: an
             break;
         case "customSnippetsList":
             // 自定义代码片段列表
-            html = fs.readFileSync(resourcePath).toString();
+            html = fs.readFileSync(path.join(context.extensionPath, 'src', 'templetes', 'build', "index.html")).toString();
+            // html = fs.readFileSync(resourcePath).toString();
             // console.log(info)
             if (info) {
                 html = html.replace(/"\$snippetsJson"/g, JSON.stringify(info));
