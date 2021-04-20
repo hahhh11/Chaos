@@ -63,6 +63,7 @@ export class SnippetsProvider implements TreeDataProvider<SnippetItem>{
             return Promise.resolve([commonSnippetsItem, customSnippetsItem])
 
         } catch (e) {
+            ``
             window.showWarningMessage("读取代码片段失败", e)
         }
 

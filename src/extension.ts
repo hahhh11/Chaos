@@ -1,5 +1,6 @@
 import { SnippetsProvider } from './Snippets/SnippetsProvider';
 import { TodoList } from './Todo/TodoList';
+import * as fs from 'fs';
 import * as vscode from 'vscode';
 import { TreeViewProvider } from './TreeViewProvider';
 import { createWebView, createTodoWebView, getHtmlByName, getTitleByName, createSnippetsWebView } from './WebView';
@@ -61,8 +62,26 @@ export function activate(context: vscode.ExtensionContext) {
 		snippetsPanel.webview.onDidReceiveMessage(
 			message => {
 				switch (message.command) {
+					case 'getSnippets':
+						console.log("获取代码片段", message.type)
+						let root = process.env.APPDATA + "\\Code\\User\\snippets";
+						let _path = ""
+						if (message.type == "custom") {
+							_path = path.join(root, 'chaos_custom.code-snippets');
+						} else if (message.type == "common") {
+							_path = path.join(root, 'chaos_common.code-snippets');
+						}
+						let snipptes = fs.readFileSync(_path, 'utf-8');
+						let _snipptes = JSON.parse(snipptes);
+						snippetsPanel.webview.postMessage({ command: "getSnippets", success: true, data: _snipptes });
+						break
 					case 'saveSnippets':
+						console.log(message)
 						console.log("保存代码片段")
+						snippetsProvider.updateSnippetJson(JSON.parse(message.snippets), "custom")
+						break;
+					case 'deleteSnippet':
+						console.log("删除对应代码片段")
 						snippetsProvider.updateSnippetJson(JSON.parse(message.snippets), "custom")
 						break;
 				}
