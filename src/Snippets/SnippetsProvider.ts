@@ -13,6 +13,8 @@ export class SnippetsProvider implements TreeDataProvider<SnippetItem>{
     public customSnippetsPath = "";
     constructor() {
         this.snippetsRoot = process.env.APPDATA + "\\Code\\User\\snippets";
+        const remote = path.dirname("");
+        window.showInformationMessage('' + remote);
         this.commonSnippetsPath = path.join(this.snippetsRoot, 'chaos_common.code-snippets');
         this.customSnippetsPath = path.join(this.snippetsRoot, 'chaos_custom.code-snippets');
         console.log("路径：", this.customSnippetsPath)
@@ -34,7 +36,7 @@ export class SnippetsProvider implements TreeDataProvider<SnippetItem>{
             let customSnippetsItem: CustomSnippetsItem
             if (this.pathExists(this.commonSnippetsPath)) {
                 const common_code_snipptes = fs.readFileSync(this.commonSnippetsPath, 'utf-8');
-                console.log(common_code_snipptes)
+                // console.log(common_code_snipptes)
                 let _common_code_snipptes = JSON.parse(common_code_snipptes);
                 commonSnippetsItem = new CommonSnippetsItem(_common_code_snipptes)
             } else {

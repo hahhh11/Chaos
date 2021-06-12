@@ -9,7 +9,7 @@ import { TODO } from './Todo/todo'
 import { DateiFileSystemProvider } from './DateiFileSystemProvider';
 import * as path from 'path';
 import { debug } from 'console';
-import { createPreviewReact, previewReact } from './preview/PreviewReact';
+// import { createPreviewReact, previewReact } from './preview/PreviewReact';
 export function activate(context: vscode.ExtensionContext) {
 	// let snippetRoot = context.extensionPath;
 	const snippetsProvider = new SnippetsProvider();

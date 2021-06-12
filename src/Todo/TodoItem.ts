@@ -35,7 +35,7 @@ export class TodoItem extends TreeItem {
 
         // iconPath： 为该项的图标因为我们是通过上面的 Map 获取的，所以我额外写了一个方法，放在下面
         this.iconPath = TodoItem.getIconUriForState(this.state + '');
-        console.log(this.iconPath)
+        // console.log(this.iconPath)
     }
 
 

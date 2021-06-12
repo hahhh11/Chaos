@@ -120,7 +120,7 @@ export class TodoDataProvider implements TreeDataProvider<TodoItem>{
             let _todoJson = JSON.parse(todoJson);
             //@ts-ignore
 
-            console.log(todoJson, _todoJson);
+            // console.log(todoJson, _todoJson);
             let todoList = new TodoList(_todoJson)
             let completeList = new CompleteList(_todoJson)
             let trash = new Trash(_todoJson)
